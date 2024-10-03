@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity} from 'react-native';
-import Styling from '../../assets/css/Styling';
+import Styling from '../assets/css/Styling';
 import React from 'react';
 
 const HomeScreen = ({ navigation }) => {

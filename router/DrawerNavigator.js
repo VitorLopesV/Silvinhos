@@ -1,9 +1,10 @@
 import { View, Text, TouchableOpacity} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer'; 
-import HomeScreen from '../views/home/HomeScreen';
+import HomeScreen from '../views/HomeScreen';
 import HeaderLeftMenu from '../components/HeaderLeftMenu';
 import Styling from '../assets/css/Styling';
 import SearchBar from '../components/SearchBar';
+import ProductRegistrationScreen from '../views/ProductRegistrationScreen';
 
 // Criar Drawer
 const Drawer = createDrawerNavigator();
@@ -44,6 +45,15 @@ function DrawerNavigator() {
             headerLeft: () => <HeaderLeftMenu navigation={navigation} />,
           })}
         />
+        <Drawer.Screen 
+          name="Cadastrar Produto" 
+          component={ProductRegistrationScreen}
+          options={({ navigation }) => ({
+            title: 'Cadastrar Produto',
+            headerStyle: { backgroundColor: '#661923' },
+            headerTintColor: '#fff',
+            headerLeft: () => <HeaderLeftMenu navigation={navigation} />,
+          })}/>
       </Drawer.Navigator>
     );
   }
