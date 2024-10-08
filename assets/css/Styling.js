@@ -12,10 +12,11 @@ const Styling = StyleSheet.create({
     productButton: {
       width: 350,
       height: 45,
+      marginVertical: 12,
       backgroundColor: '#661923', 
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: 10,
+      borderRadius: 7,
     },
     MainInterface: {
       alignItems: 'center',
