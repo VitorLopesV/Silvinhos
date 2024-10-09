@@ -64,7 +64,40 @@ const Styling = StyleSheet.create({
       marginBottom: 6,
       fontSize: 14,
       fontWeight:'bold',
-    }
+    },
+    // Styles do Card:
+    cardOfWineContainer: {
+      flexDirection: 'row', 
+      backgroundColor: '#661923',
+      marginVertical: 12,
+      marginLeft: 25,
+      borderRadius: 7,
+      alignItems: 'center',
+      width: 322, 
+      height: 110,
+    },
+    imageWine: {
+      width: 125,
+      height: 125,
+      borderRadius: 300,
+      position: 'absolute', 
+      left: -32,
+    },
+    infoOfWineContainer: {
+      marginLeft: 125,
+      justifyContent: 'center',
+    },
+    nameWine: {
+      fontSize: 20,
+      color: 'white',
+      fontWeight: 'bold',
+      marginBottom: 10,
+    },
+    detailsOfWine: {
+      fontSize: 16,
+      color: '#DCDCDC',
+      marginBottom: 2,
+    },
   });
 
   export default Styling;
