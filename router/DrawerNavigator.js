@@ -5,6 +5,7 @@ import HeaderLeftMenu from '../components/HeaderLeftMenu';
 import Styling from '../assets/css/Styling';
 import SearchBar from '../components/SearchBar';
 import ProductRegistrationScreen from '../views/ProductRegistrationScreen';
+import ViewProductScreen from '../components/ViewProductScreen';
 
 // Criar Drawer
 const Drawer = createDrawerNavigator();
@@ -15,7 +16,7 @@ const Filter = ({ navigation }) => {
         <View style={Styling.drawerContainer}>
             <SearchBar/>
             <Text style={Styling.textTitle}>Tipos de vinhos:</Text>
-            <TouchableOpacity style={Styling.leftBarButton} onPress={() => navigation.navigate('Vinhos Secos')}>
+            <TouchableOpacity style={Styling.leftBarButton}>
                 <Text style={Styling.leftBarButtonText}>Seco</Text>
             </TouchableOpacity>
             <TouchableOpacity style={Styling.leftBarButton} onPress={() => navigation.navigate('Home')}>
@@ -50,6 +51,15 @@ function DrawerNavigator() {
           component={ProductRegistrationScreen}
           options={({ navigation }) => ({
             title: 'Cadastrar Produto',
+            headerStyle: { backgroundColor: '#661923' },
+            headerTintColor: '#fff',
+            headerLeft: () => <HeaderLeftMenu navigation={navigation} />,
+          })}/>
+        <Drawer.Screen
+          name="Visualizar Produto"
+          component={ViewProductScreen}
+          options={({ navigation }) => ({
+            title: 'Visualizar Produto',
             headerStyle: { backgroundColor: '#661923' },
             headerTintColor: '#fff',
             headerLeft: () => <HeaderLeftMenu navigation={navigation} />,
