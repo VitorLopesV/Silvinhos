@@ -1,19 +1,10 @@
 import React from 'react';
-<<<<<<< Updated upstream
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-=======
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import Styling from '../assets/css/Styling';
->>>>>>> Stashed changes
 
 const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptionWine }) => {
   return (
-<<<<<<< Updated upstream
-    <TouchableOpacity style={styles.cardOfWineContainer} onPress={() => navigation.navigate('Home')}>
-=======
-    <TouchableOpacity style={Styling.cardOfWineContainer} onPress={() => navigation.navigate('Visualizar Produto')}>
->>>>>>> Stashed changes
+    <TouchableOpacity style={Styling.cardOfWineContainer} onPress={() => navigation.navigate('Home')}>
       <Image
         style={Styling.imageWine}
         source={require('../assets/img/vinho.jpg')}
