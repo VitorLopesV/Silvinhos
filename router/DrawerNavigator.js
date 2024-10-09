@@ -5,7 +5,7 @@ import HeaderLeftMenu from '../components/HeaderLeftMenu';
 import Styling from '../assets/css/Styling';
 import SearchBar from '../components/SearchBar';
 import ProductRegistrationScreen from '../views/ProductRegistrationScreen';
-import ViewProductScreen from '../components/ViewProductScreen';
+import ViewProductScreen from '../views/ViewProductScreen';
 
 // Criar Drawer
 const Drawer = createDrawerNavigator();
