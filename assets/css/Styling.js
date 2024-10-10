@@ -98,6 +98,55 @@ const Styling = StyleSheet.create({
       color: '#DCDCDC',
       marginBottom: 2,
     },
+    // MODAL CARDS
+    roundButton: {
+      width: 40, 
+      height: 40, 
+      borderRadius: 7, 
+      backgroundColor: 'black',
+      justifyContent: 'center',
+      alignItems: 'center',
+      position: 'absolute',
+      top: 10,
+      right: 10,
+    },    
+    modalOverlay: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContent: {
+      width: 300,
+      padding: 20,
+      borderRadius: 10,
+      backgroundColor: '#FFFFFF',
+      alignItems: 'center',
+    },
+    modalText: {
+      fontSize: 18,
+      marginBottom: 20,
+      fontWeight: 'bold',
+    },
+    buttonContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      width: '100%',
+    },
+    modalButton: {
+      flex: 1,
+      padding: 10,
+      marginHorizontal: 5,
+      backgroundColor: '#007BFF',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 5,
+    },
+    buttonText: {
+      color: 'white',
+      fontWeight: 'bold',
+      fontSize: 20,
+    },
   });
 
   export default Styling;
