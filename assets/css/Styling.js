@@ -99,17 +99,22 @@ const Styling = StyleSheet.create({
       marginBottom: 2,
     },
     // MODAL CARDS
-    roundButton: {
+    editButton: {
       width: 40, 
       height: 40, 
       borderRadius: 7, 
-      backgroundColor: 'black',
+      backgroundColor: 'white',
       justifyContent: 'center',
       alignItems: 'center',
       position: 'absolute',
       top: 10,
       right: 10,
     },    
+    editImage: {
+      width: 35,
+      height: 35,
+      marginLeft:1,
+    },
     modalOverlay: {
       flex: 1,
       justifyContent: 'center',
@@ -117,32 +122,36 @@ const Styling = StyleSheet.create({
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     modalContent: {
-      width: 300,
-      padding: 20,
-      borderRadius: 10,
+      width: 350,
+      height: 155,
+      borderRadius: 7,
       backgroundColor: '#FFFFFF',
       alignItems: 'center',
     },
-    modalText: {
-      fontSize: 18,
-      marginBottom: 20,
+    modalTitle: {
+      fontSize: 22,
+      marginTop: 10,
+      marginBottom:10,
       fontWeight: 'bold',
     },
-    buttonContainer: {
+    modalText: {
+      fontSize: 18,
+    },
+    modalButtonContainer: {
+      marginTop: 20,
       flexDirection: 'row',
-      justifyContent: 'space-between',
-      width: '100%',
     },
     modalButton: {
       flex: 1,
-      padding: 10,
+      width: 100,
+      height: 50,
       marginHorizontal: 5,
-      backgroundColor: '#007BFF',
+      backgroundColor: '#661923',
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: 5,
+      borderRadius: 7,
     },
-    buttonText: {
+    modalButtonText: {
       color: 'white',
       fontWeight: 'bold',
       fontSize: 20,
