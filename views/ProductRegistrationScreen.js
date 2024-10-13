@@ -3,7 +3,7 @@ import { View, TextInput, Button,Image, TouchableOpacity, Text } from 'react-nat
 import { launchImageLibrary } from 'react-native-image-picker';
 import Styling from '../assets/css/Styling';
 import CustomTextInput from "../components/CustomTextInput";
-import Formatter from '../global/util/Formatter';
+import Formatter from '../util/Formatter';
 
 const ProductRegistrationScreen = ({ navigation }) => {
   const [nomeProduto, setNomeProduto] = useState('');
