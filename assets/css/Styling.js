@@ -80,7 +80,7 @@ const Styling = StyleSheet.create({
       justifyContent: 'center',
       marginBottom: 10,
     },
-    image: {
+    productImage: {
       width: '100%',
       height: '100%',
       borderRadius: 90,

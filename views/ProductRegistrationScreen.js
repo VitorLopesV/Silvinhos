@@ -47,9 +47,9 @@ const ProductRegistrationScreen = ({ navigation }) => {
     <View style={Styling.productContainer}>
       <TouchableOpacity style={Styling.imageUpload} onPress={handleImagePicker}>
         {imagemProduto ? (
-          <Image source={{ uri: imagemProduto }} style={Styling.image} />
+          <Image source={{ uri: imagemProduto }} style={Styling.productImage} />
         ) : (
-          <Image source={{ uri: '' }} style={Styling.image} />
+          <Image source={{ uri: '' }} style={Styling.productImage} />
         )}
       </TouchableOpacity>
 
