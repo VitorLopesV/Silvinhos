@@ -7,7 +7,7 @@ const Card = ({ nameWine, typeWine, priceWine, quantityWine, onSelect }) => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity style={Styling.cardOfWineContainer} onPress={() => navigation.navigate('Cadastrar Produto')}>
+    <TouchableOpacity style={Styling.cardOfWineContainer} onPress={() => navigation.navigate('Visualizar Produto')}>
       <Image style={Styling.imageWine} source={require('../assets/img/vinho.jpg')}/>
       <View style={Styling.infoOfWineContainer}>
         <Text style={Styling.nameWine}>{nameWine}</Text>

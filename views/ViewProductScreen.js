@@ -1,30 +1,17 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button,Image, TouchableOpacity, Text, Touchable } from 'react-native';
+import { View, Text, TextInput, Button,Image, TouchableOpacity} from "react-native";
+import { useState } from 'react';
 import { launchImageLibrary } from 'react-native-image-picker';
-import Styling from '../assets/css/Styling';
+import Styling from "../assets/css/Styling";
 import CustomTextInput from "../components/CustomTextInput";
-import Formatter from '../util/Formatter';
+import Formatter from "../util/Formatter";
 
-const ProductRegistrationScreen = ({ navigation }) => {
-  const [nomeProduto, setNomeProduto] = useState('');
-  const [tipoProduto, setTipoProduto] = useState('');
-  const [valorProduto, setValorProduto] = useState('');
-  const [quantidadeProduto, setQuantidadeProduto] = useState('');
-  const [descricaoProduto, setDescricaoProduto] = useState('');
-  const [imagemProduto, setImagemProduto] = useState(null);
-
-  const handleAdicionarProduto = () => {
-    console.log({
-      nomeProduto,
-      tipoProduto,
-      valorProduto,
-      quantidadeProduto,
-      descricaoProduto,
-      imagemProduto,
-    });
-
-    navigation.navigate('Home');
-  };
+const ViewProductScreen = () =>{
+    const [nomeProduto, setNomeProduto] = useState('');
+    const [tipoProduto, setTipoProduto] = useState('');
+    const [valorProduto, setValorProduto] = useState('');
+    const [quantidadeProduto, setQuantidadeProduto] = useState('');
+    const [descricaoProduto, setDescricaoProduto] = useState('');
+    const [imagemProduto, setImagemProduto] = useState(null);
 
   const handleImagePicker = () => {
     launchImageLibrary({ mediaType: 'photo' }, (response) => {
@@ -39,7 +26,7 @@ const ProductRegistrationScreen = ({ navigation }) => {
   };
 
   const handleValorChange = (text) => {
-    const valorFormatado = <Formatter text={text}/>
+    const valorFormatado = <Formatter text ={text}/>
     setValorProduto(valorFormatado);
   };
 
@@ -49,7 +36,7 @@ const ProductRegistrationScreen = ({ navigation }) => {
         {imagemProduto ? (
           <Image source={{ uri: imagemProduto }} style={Styling.productImage} />
         ) : (
-          <Image source={require('../assets/img/imagem padrão produto.png')} style={Styling.productImage} />
+          <Image source={require('../assets/img/vinho.jpg')} style={Styling.productImage} />
         )}
       </TouchableOpacity>
 
@@ -58,8 +45,8 @@ const ProductRegistrationScreen = ({ navigation }) => {
           <Text style={Styling.removeButtonText}>X</Text>
         </TouchableOpacity>
       )}
-
-<CustomTextInput
+      
+      <CustomTextInput
         placeholder="Nome do Produto"
         value={nomeProduto}
         onChangeText={setNomeProduto}
@@ -91,12 +78,11 @@ const ProductRegistrationScreen = ({ navigation }) => {
         textAlignVertical="top"
         returnKeyType="done"
       />
-
-      <TouchableOpacity style={Styling.button} onPress={handleAdicionarProduto}>
+      <TouchableOpacity style={Styling.button} onPress={() => navigation.navigate('Home')}>
         <Text style={Styling.buttonText}>Cadastrar Produto</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default ProductRegistrationScreen;
+export default ViewProductScreen;
