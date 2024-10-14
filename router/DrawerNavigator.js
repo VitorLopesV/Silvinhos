@@ -43,7 +43,6 @@ function DrawerNavigator() {
             title: 'Início',
             headerStyle: { backgroundColor: '#661923' },
             headerTintColor: '#fff',
-            headerLeft: () => <HeaderLeftMenu navigation={navigation} />,
           })}
         />
         <Drawer.Screen 
