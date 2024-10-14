@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { launchImageLibrary } from 'react-native-image-picker';
 import Styling from "../assets/css/Styling";
 import CustomTextInput from "../components/CustomTextInput";
-import Formatter from "../global/util/Formatter";
+import Formatter from "../util/Formatter";
 
 const ViewProductScreen = () =>{
     const [nomeProduto, setNomeProduto] = useState('');
