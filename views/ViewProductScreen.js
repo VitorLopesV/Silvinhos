@@ -36,7 +36,7 @@ const ViewProductScreen = () =>{
         {imagemProduto ? (
           <Image source={{ uri: imagemProduto }} style={Styling.productImage} />
         ) : (
-          <Image source={{ uri: '' }} style={Styling.productImage} />
+          <Image source={require('../assets/img/vinho.jpg')} style={Styling.productImage} />
         )}
       </TouchableOpacity>
 
@@ -62,12 +62,12 @@ const ViewProductScreen = () =>{
         onChangeText={handleValorChange}
       />
       <CustomTextInput
-        placeholder="quantidade"
+        placeholder="Quantidade"
         value={quantidadeProduto}
         onChangeText={setQuantidadeProduto}
       />
       <TextInput
-        style={Styling.textArea}
+        style={Styling.textDescriptionArea}
         placeholder="Descrição"
         placeholderTextColor="#aaa"
         value={descricaoProduto}
@@ -78,7 +78,9 @@ const ViewProductScreen = () =>{
         textAlignVertical="top"
         returnKeyType="done"
       />
-      <Button title="Remover Produto" onPress={() => navigation.navigate('Home')} color="#661923" />
+      <TouchableOpacity style={Styling.button} onPress={() => navigation.navigate('Home')}>
+        <Text style={Styling.buttonText}>Cadastrar Produto</Text>
+      </TouchableOpacity>
     </View>
   );
 };

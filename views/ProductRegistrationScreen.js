@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button,Image, TouchableOpacity, Text } from 'react-native';
+import { View, TextInput, Button,Image, TouchableOpacity, Text, Touchable } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import Styling from '../assets/css/Styling';
 import CustomTextInput from "../components/CustomTextInput";
@@ -49,7 +49,7 @@ const ProductRegistrationScreen = ({ navigation }) => {
         {imagemProduto ? (
           <Image source={{ uri: imagemProduto }} style={Styling.productImage} />
         ) : (
-          <Image source={{ uri: '' }} style={Styling.productImage} />
+          <Image source={require('../assets/img/imagem padrão produto.png')} style={Styling.productImage} />
         )}
       </TouchableOpacity>
 
@@ -75,12 +75,12 @@ const ProductRegistrationScreen = ({ navigation }) => {
         onChangeText={handleValorChange}
       />
       <CustomTextInput
-        placeholder="quantidade"
+        placeholder="Quantidade"
         value={quantidadeProduto}
         onChangeText={setQuantidadeProduto}
       />
       <TextInput
-        style={Styling.textArea}
+        style={Styling.textDescriptionArea}
         placeholder="Descrição"
         placeholderTextColor="#aaa"
         value={descricaoProduto}
@@ -91,7 +91,10 @@ const ProductRegistrationScreen = ({ navigation }) => {
         textAlignVertical="top"
         returnKeyType="done"
       />
-      <Button title="Adicionar Produto" onPress={handleAdicionarProduto} color="#661923" />
+
+      <TouchableOpacity style={Styling.button} onPress={handleAdicionarProduto}>
+        <Text style={Styling.buttonText}>Cadastrar Produto</Text>
+      </TouchableOpacity>
     </View>
   );
 };

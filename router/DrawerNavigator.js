@@ -8,12 +8,12 @@ import ProductRegistrationScreen from '../views/ProductRegistrationScreen';
 import ViewProductScreen from '../views/ViewProductScreen';
 import HeaderLeftMenu from '../components/HeaderLeftMenu';
 
-// Criar Drawer
+
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
-// Conteúdo do Drawer
-const Filter = ({ navigation }) => {
+
+const Filter = () => {
     return (
         <View style={Styling.drawerContainer}>
             <SearchBar/>
