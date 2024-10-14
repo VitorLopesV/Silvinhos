@@ -8,10 +8,7 @@ const Card = ({ nameWine, typeWine, priceWine, quantityWine, onSelect }) => {
 
   return (
     <TouchableOpacity style={Styling.cardOfWineContainer} onPress={() => navigation.navigate('Cadastrar Produto')}>
-      <Image
-        style={Styling.imageWine}
-        source={require('../assets/img/vinho.jpg')}
-      />
+      <Image style={Styling.imageWine} source={require('../assets/img/vinho.jpg')}/>
       <View style={Styling.infoOfWineContainer}>
         <Text style={Styling.nameWine}>{nameWine}</Text>
         <Text style={Styling.detailsOfWine}>Valor: R$ {priceWine}</Text>
@@ -19,7 +16,7 @@ const Card = ({ nameWine, typeWine, priceWine, quantityWine, onSelect }) => {
       </View>
 
       <TouchableOpacity style={Styling.editButton} onPress={() => onSelect(nameWine, quantityWine)}>
-        <Image source={require('../assets/img/edit.png')} style={Styling.editImage}/>
+        <Image style={Styling.adcImage} source={require('../assets/img/adc.png')}/>
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -68,13 +65,13 @@ const CardList = ({ navigation }) => {
             <Text style={Styling.modalText}>Quantidade: {selectedWine.quantity}</Text> 
             <View style={Styling.modalButtonContainer}>
               <TouchableOpacity style={Styling.modalButton}>
-                <Text style={Styling.modalButtonText}>-</Text>
+                <Image style={Styling.plusMinusImage} source={require('../assets/img/minus.png')}/>
               </TouchableOpacity>
               <TouchableOpacity style={Styling.modalButton} onPress={closeModal}>
                 <Text style={Styling.modalButtonText}>Voltar</Text>
               </TouchableOpacity>
               <TouchableOpacity style={Styling.modalButton}>
-                <Text style={Styling.modalButtonText}>+</Text>
+                <Image style={Styling.plusMinusImage} source={require('../assets/img/plus.png')}/>
               </TouchableOpacity>
             </View>
           </View>

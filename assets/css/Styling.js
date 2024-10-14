@@ -110,10 +110,13 @@ const Styling = StyleSheet.create({
       top: 10,
       right: 10,
     },    
-    editImage: {
-      width: 35,
-      height: 35,
-      marginLeft:1,
+    adcImage: {
+      width: 45,
+      height: 45,
+    },
+    plusMinusImage: {
+      width: 30,
+      height: 30,
     },
     modalOverlay: {
       flex: 1,
