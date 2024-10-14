@@ -59,8 +59,8 @@ const Styling = StyleSheet.create({
       backgroundColor: '#fff',
     },
     image: {
-      width: 39,
-      height: 39,
+      width: 45,
+      height: 45,
       marginLeft:15,
     },
     textTitle:{
