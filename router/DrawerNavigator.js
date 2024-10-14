@@ -1,12 +1,12 @@
-import { View, Text, TouchableOpacity} from 'react-native';
+import { View, Text, TouchableOpacity, Image} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer'; 
 import { createStackNavigator} from '@react-navigation/stack'
 import HomeScreen from '../views/HomeScreen';
-import HeaderLeftMenu from '../components/HeaderLeftMenu';
 import Styling from '../assets/css/Styling';
 import SearchBar from '../components/SearchBar';
 import ProductRegistrationScreen from '../views/ProductRegistrationScreen';
 import ViewProductScreen from '../views/ViewProductScreen';
+import HeaderLeftMenu from '../components/HeaderLeftMenu';
 
 // Criar Drawer
 const Drawer = createDrawerNavigator();
@@ -40,11 +40,12 @@ const Filter = ({ navigation }) => {
         <Drawer.Screen 
           name="Home" 
           component={HomeScreen} 
-          options={{
+          options={({ navigation }) => ({
             title: 'Início',
             headerStyle: { backgroundColor: '#661923' },
             headerTintColor: '#fff',
-          }}
+            headerLeft: () => <HeaderLeftMenu navigation={navigation} />,
+          })}
         />
       </Drawer.Navigator>
     );
