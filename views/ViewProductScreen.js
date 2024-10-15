@@ -4,8 +4,11 @@ import { launchImageLibrary } from 'react-native-image-picker';
 import Styling from "../assets/css/Styling";
 import CustomTextInput from "../components/CustomTextInput";
 import Formatter from "../util/Formatter";
+import { useNavigation } from '@react-navigation/native';
 
 const ViewProductScreen = () =>{
+  const navigation = useNavigation();
+
     const [nomeProduto, setNomeProduto] = useState('');
     const [tipoProduto, setTipoProduto] = useState('');
     const [valorProduto, setValorProduto] = useState('');

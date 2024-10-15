@@ -22,7 +22,9 @@ const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptWine, onSel
   );
 };
 
-const CardList = ({ navigation }) => {
+const CardList = () => {
+  const navigation = useNavigation();
+
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedWine, setSelectedWine] = useState({ name: '', quantity: '' });
 
@@ -30,10 +32,9 @@ const CardList = ({ navigation }) => {
     setSelectedWine({ name: nameWine, quantity: quantityWine });
     setModalVisible(true);
   };
-
   const closeModal = () => {
     setModalVisible(false);
-    navigation.navigate('Home');
+    navigation.navigate('Início');
   };
 
   return (
