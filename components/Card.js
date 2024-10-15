@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, Modal } from 'react-native';
 import Styling from '../assets/css/Styling';
 import { useNavigation } from '@react-navigation/native';
 
-const Card = ({ nameWine, typeWine, priceWine, quantityWine, onSelect }) => {
+const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptWine, onSelect }) => {
   const navigation = useNavigation();
 
   return (
@@ -40,15 +40,19 @@ const CardList = ({ navigation }) => {
     <View style={Styling.listOfWineContainer}>
       <Card 
         nameWine="Vinho 01" 
+        typeWine="Suave"
         priceWine="200,00" 
         quantityWine="12" 
+        descriptWine="Um vinho bom para ocasiões especiais"
         navigation={navigation}
         onSelect={openModal} 
       />
       <Card 
         nameWine="Vinho 02" 
+        typeWine="Tinto"
         priceWine="300,00" 
         quantityWine="20" 
+        descriptWine="Um vinho que serve para frios e derivados"
         navigation={navigation}
         onSelect={openModal} 
       />

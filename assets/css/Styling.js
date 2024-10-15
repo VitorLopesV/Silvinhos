@@ -107,7 +107,6 @@ const Styling = StyleSheet.create({
       width: 40, 
       height: 40, 
       borderRadius: 7, 
-      backgroundColor: 'white',
       justifyContent: 'center',
       alignItems: 'center',
       position: 'absolute',
