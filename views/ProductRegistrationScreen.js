@@ -23,7 +23,7 @@ const ProductRegistrationScreen = ({ navigation }) => {
       imagemProduto,
     });
 
-    navigation.navigate('Home');
+    navigation.navigate('Início');
   };
 
   const handleImagePicker = () => {

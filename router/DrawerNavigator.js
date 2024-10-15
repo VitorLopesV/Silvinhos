@@ -56,7 +56,7 @@ const Filter = () => {
       <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: '#661923' }, headerTintColor: '#fff'}}>
         {/* Tela que contém o Drawer */}
         <Stack.Screen 
-          name="HomeDrawer" 
+          name="Início" 
           component={DrawerNavigatorr} 
           options={{ headerShown: false }}
         />

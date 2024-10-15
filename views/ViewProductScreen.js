@@ -78,7 +78,7 @@ const ViewProductScreen = () =>{
         textAlignVertical="top"
         returnKeyType="done"
       />
-      <TouchableOpacity style={Styling.button} onPress={() => navigation.navigate('Home')}>
+      <TouchableOpacity style={Styling.button} onPress={() => navigation.navigate('Início')}>
         <Text style={Styling.buttonText}>Cadastrar Produto</Text>
       </TouchableOpacity>
     </View>
