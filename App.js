@@ -14,8 +14,8 @@ function App() {
     await db.execAsync(`
     PRAGMA journal_mode = WAL;
     CREATE TABLE IF NOT EXISTS vinhos (id INTEGER PRIMARY KEY NOT NULL, name TEXT NOT NULL, tipo TEXT NOT NULL, preço DOUBLE NOT NULL, quantidade INTEGER NOT NULL, descrição TEXT);
-    INSERT INTO vinhos (name, tipo, preço, quantidade, descrição) VALUES ('Pérgola', 'Suave', 30,00, 3, 'Bom demais');
-    INSERT INTO vinhos (name, tipo, preço, quantidade, descrição) VALUES ('Cabernet', 'Tinto', 300,00, 1, 'Caro demais');
+    INSERT INTO vinhos (name, tipo, preço, quantidade, descrição) VALUES ('Pérgola', 'Suave', 30.00, 3, 'Bom demais');
+    INSERT INTO vinhos (name, tipo, preço, quantidade, descrição) VALUES ('Cabernet', 'Tinto', 300.00, 1, 'Caro demais');
     `);
     const allRows = await db.getAllAsync('SELECT * FROM vinhos');
     for (const row of allRows) {
