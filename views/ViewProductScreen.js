@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button,Image, TouchableOpacity} from "react-native";
+import { View, Text, TextInput, Button ,Image, TouchableOpacity, Modal} from "react-native";
 import { useState } from 'react';
 import { launchImageLibrary } from 'react-native-image-picker';
 import Styling from "../assets/css/Styling";
@@ -9,12 +9,21 @@ import { useNavigation } from '@react-navigation/native';
 const ViewProductScreen = () =>{
   const navigation = useNavigation();
 
-    const [nomeProduto, setNomeProduto] = useState('');
-    const [tipoProduto, setTipoProduto] = useState('');
-    const [valorProduto, setValorProduto] = useState('');
-    const [quantidadeProduto, setQuantidadeProduto] = useState('');
-    const [descricaoProduto, setDescricaoProduto] = useState('');
-    const [imagemProduto, setImagemProduto] = useState(null);
+  const [nomeProduto, setNomeProduto] = useState('');
+  const [tipoProduto, setTipoProduto] = useState('');
+  const [valorProduto, setValorProduto] = useState('');
+  const [quantidadeProduto, setQuantidadeProduto] = useState('');
+  const [descricaoProduto, setDescricaoProduto] = useState('');
+  const [imagemProduto, setImagemProduto] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+   setModalVisible(false);
+    navigation.navigate('Visualizar Produto');
+  };
 
   const handleImagePicker = () => {
     launchImageLibrary({ mediaType: 'photo' }, (response) => {
@@ -81,9 +90,31 @@ const ViewProductScreen = () =>{
         textAlignVertical="top"
         returnKeyType="done"
       />
-      <TouchableOpacity style={Styling.button} onPress={() => navigation.navigate('Início')}>
-        <Text style={Styling.buttonText}>Cadastrar Produto</Text>
+
+      <TouchableOpacity style={Styling.button} onPress={openModal}>
+        <Text style={Styling.buttonText}>Remover Produto</Text>
       </TouchableOpacity>
+
+      <Modal
+        transparent={true}
+        animationType="fade"
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={Styling.modalOverlay}>
+          <View style={Styling.modalRemoveContent}>
+            <Text style={Styling.modalRemoveTitle}>Deseja mesmo remover o produto?</Text>
+            <View style={Styling.modalRemoveButtonContainer}>
+              <TouchableOpacity style={Styling.modalRemoveButton}>
+                <Text style={Styling.modalButtonText}>Sim</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={Styling.modalRemoveButton} onPress={closeModal}>
+                <Text style={Styling.modalButtonText}>Não</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
