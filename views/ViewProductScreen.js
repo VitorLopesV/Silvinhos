@@ -50,37 +50,18 @@ const ViewProductScreen = () =>{
       )}
       
       <CustomTextInput
-        placeholder="Nome do Produto"
-        value={nomeProduto}
-        onChangeText={setNomeProduto}
+        nomeProduto={nomeProduto} 
+        setNomeProduto={setNomeProduto} 
+        tipoProduto={tipoProduto} 
+        setTipoProduto={setTipoProduto} 
+        valorProduto={valorProduto} 
+        handleValorChange={handleValorChange} 
+        quantidadeProduto={quantidadeProduto} 
+        setQuantidadeProduto={setQuantidadeProduto}  
+        descricaoProduto={descricaoProduto} 
+        setDescricaoProduto={setDescricaoProduto} 
       />
-      <CustomTextInput
-        placeholder="Tipo do produto"
-        value={tipoProduto}
-        onChangeText={setTipoProduto}
-      />
-      <CustomTextInput
-        placeholder="Valor Produto"
-        value={valorProduto}
-        onChangeText={handleValorChange}
-      />
-      <CustomTextInput
-        placeholder="Quantidade"
-        value={quantidadeProduto}
-        onChangeText={setQuantidadeProduto}
-      />
-      <TextInput
-        style={Styling.textDescriptionArea}
-        placeholder="Descrição"
-        placeholderTextColor="#aaa"
-        value={descricaoProduto}
-        onChangeText={setDescricaoProduto}
-        multiline={true}
-        numberOfLines={4}
-        maxLength={200}
-        textAlignVertical="top"
-        returnKeyType="done"
-      />
+      
       <TouchableOpacity style={Styling.button} onPress={() => navigation.navigate('Início')}>
         <Text style={Styling.buttonText}>Cadastrar Produto</Text>
       </TouchableOpacity>
