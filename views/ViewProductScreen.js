@@ -1,12 +1,13 @@
-import { View, Text, TextInput, Button ,Image, TouchableOpacity, Modal} from "react-native";
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
-import Styling from "../assets/css/Styling";
-import CustomTextInput from "../components/CustomTextInput";
-import Formatter from "../util/Formatter";
+import Styling from '../assets/css/Styling';
+import CustomTextInput from '../components/CustomTextInput';
+import Formatter from '../util/Formatter';
 import { useNavigation } from '@react-navigation/native';
+import RemoveProductModal from '../components/ModalRemove';
 
-const ViewProductScreen = () =>{
+const ViewProductScreen = () => {
   const navigation = useNavigation();
 
   const [nomeProduto, setNomeProduto] = useState('');
@@ -20,8 +21,9 @@ const ViewProductScreen = () =>{
   const openModal = () => {
     setModalVisible(true);
   };
+
   const closeModal = () => {
-   setModalVisible(false);
+    setModalVisible(false);
     navigation.navigate('Visualizar Produto');
   };
 
@@ -38,7 +40,7 @@ const ViewProductScreen = () =>{
   };
 
   const handleValorChange = (text) => {
-    const valorFormatado = <Formatter text ={text}/>
+    const valorFormatado = <Formatter text={text} />;
     setValorProduto(valorFormatado);
   };
 
@@ -57,7 +59,7 @@ const ViewProductScreen = () =>{
           <Text style={Styling.removeButtonText}>X</Text>
         </TouchableOpacity>
       )}
-      
+
       <CustomTextInput
         placeholder="Nome do Produto"
         value={nomeProduto}
@@ -95,26 +97,7 @@ const ViewProductScreen = () =>{
         <Text style={Styling.buttonText}>Remover Produto</Text>
       </TouchableOpacity>
 
-      <Modal
-        transparent={true}
-        animationType="fade"
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={Styling.modalOverlay}>
-          <View style={Styling.modalRemoveContent}>
-            <Text style={Styling.modalRemoveTitle}>Deseja mesmo remover o produto?</Text>
-            <View style={Styling.modalRemoveButtonContainer}>
-              <TouchableOpacity style={Styling.modalRemoveButton}>
-                <Text style={Styling.modalButtonText}>Sim</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={Styling.modalRemoveButton} onPress={closeModal}>
-                <Text style={Styling.modalButtonText}>Não</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </Modal>
+      <RemoveProductModal visible={modalVisible} onClose={closeModal} />
     </View>
   );
 };
