@@ -50,13 +50,12 @@ const Styling = StyleSheet.create({
       fontSize: 20,
     },
     searchBar: {
-      height: 35,
+      height: 45,
       width: '100%',
       borderColor: '#646464',
       borderWidth: 1,
       padding: 16,
       borderRadius: 5,
-      backgroundColor: '#fff',
     },
     image: {
       width: 45,
