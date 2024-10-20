@@ -68,6 +68,7 @@ const Styling = StyleSheet.create({
       fontSize: 14,
       fontWeight:'bold',
     },
+    
     // Styles do Card:
     cardOfWineContainer: {
       flexDirection: 'row', 
@@ -101,7 +102,8 @@ const Styling = StyleSheet.create({
       color: '#DCDCDC',
       marginBottom: 2,
     },
-    // MODAL CARDS
+
+    // Modal Cards
     editButton: {
       width: 40, 
       height: 40, 
@@ -158,9 +160,36 @@ const Styling = StyleSheet.create({
     },
     modalButtonText: {
       color: 'white',
-      fontWeight: 'bold',
       fontSize: 20,
     },
+
+    //Modal Remover Produto
+    modalRemoveContent: {
+      width: 300,
+      padding: 20,
+      backgroundColor: '#FFFFFF',
+      borderRadius: 7,
+      alignItems: 'center',
+    },
+    modalRemoveTitle: {
+      fontSize: 22,
+      marginBottom: 30,
+    },
+    modalRemoveButtonContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      width: '100%',
+    },
+    modalRemoveButton: {
+      flex: 1,
+      marginHorizontal: 10,
+      padding: 10,
+      backgroundColor: '#661923',
+      borderRadius: 7,
+      alignItems: 'center',
+    },
+
+    //
     productContainer: {
       flex: 1,
       padding: 20,

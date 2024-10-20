@@ -1,20 +1,37 @@
-import { View, Text, TextInput, Button,Image, TouchableOpacity} from "react-native";
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
-import Styling from "../assets/css/Styling";
-import CustomTextInput from "../components/CustomTextInput";
-import Formatter from "../util/Formatter";
+import Styling from '../assets/css/Styling';
+import CustomTextInput from '../components/CustomTextInput';
+import Formatter from '../util/Formatter';
 import { useNavigation } from '@react-navigation/native';
+import RemoveProductModal from '../components/ModalRemove';
 
-const ViewProductScreen = () =>{
+const ViewProductScreen = () => {
   const navigation = useNavigation();
 
-    const [nomeProduto, setNomeProduto] = useState('');
-    const [tipoProduto, setTipoProduto] = useState('');
-    const [valorProduto, setValorProduto] = useState('');
-    const [quantidadeProduto, setQuantidadeProduto] = useState('');
-    const [descricaoProduto, setDescricaoProduto] = useState('');
-    const [imagemProduto, setImagemProduto] = useState(null);
+  const [nomeProduto, setNomeProduto] = useState('');
+  const [tipoProduto, setTipoProduto] = useState('');
+  const [valorProduto, setValorProduto] = useState('');
+  const [quantidadeProduto, setQuantidadeProduto] = useState('');
+  const [descricaoProduto, setDescricaoProduto] = useState('');
+  const [imagemProduto, setImagemProduto] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+    navigation.navigate('Visualizar Produto');
+  };
+
+  const teste = () => {
+    setModalVisible(false);
+    navigation.navigate('Início');
+  };
+  
 
   const handleImagePicker = () => {
     launchImageLibrary({ mediaType: 'photo' }, (response) => {
@@ -29,7 +46,7 @@ const ViewProductScreen = () =>{
   };
 
   const handleValorChange = (text) => {
-    const valorFormatado = <Formatter text ={text}/>
+    const valorFormatado = <Formatter text={text} />;
     setValorProduto(valorFormatado);
   };
 
@@ -48,7 +65,7 @@ const ViewProductScreen = () =>{
           <Text style={Styling.removeButtonText}>X</Text>
         </TouchableOpacity>
       )}
-      
+
       <CustomTextInput
         nomeProduto={nomeProduto} 
         setNomeProduto={setNomeProduto} 
@@ -61,10 +78,12 @@ const ViewProductScreen = () =>{
         descricaoProduto={descricaoProduto} 
         setDescricaoProduto={setDescricaoProduto} 
       />
-      
-      <TouchableOpacity style={Styling.button} onPress={() => navigation.navigate('Início')}>
-        <Text style={Styling.buttonText}>Cadastrar Produto</Text>
+
+      <TouchableOpacity style={Styling.button} onPress={openModal}>
+        <Text style={Styling.buttonText}>Remover Produto</Text>
       </TouchableOpacity>
+
+      <RemoveProductModal visible={modalVisible} onClose={closeModal} teste={teste} />
     </View>
   );
 };
