@@ -1,40 +1,17 @@
-import { View, Text, TouchableOpacity, Image} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer'; 
 import { createStackNavigator} from '@react-navigation/stack'
 import HomeScreen from '../views/HomeScreen';
-import Styling from '../assets/css/Styling';
-import SearchBar from '../components/SearchBar';
 import ProductRegistrationScreen from '../views/ProductRegistrationScreen';
 import ViewProductScreen from '../views/ViewProductScreen';
 import HeaderLeftMenu from '../components/HeaderLeftMenu';
-
+import Filter from '../components/Filter';
+import EditProduct from '../components/EditProduct';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
-
-const Filter = () => {
-    return (
-        <View style={Styling.drawerContainer}>
-            <SearchBar/>
-            <Text style={Styling.textTitle}>Tipos de vinhos:</Text>
-            <TouchableOpacity style={Styling.leftBarButton}>
-                <Text style={Styling.leftBarButtonText}>Seco</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={Styling.leftBarButton}>
-                <Text style={Styling.leftBarButtonText}>Suave</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={Styling.leftBarButton}>
-                <Text style={Styling.leftBarButtonText}>Tinto</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={Styling.leftBarButton}>
-                <Text style={Styling.leftBarButtonText}>Espumante</Text>
-            </TouchableOpacity>
-        </View>
-    );
-  };
-
-  function DrawerNavigatorr() {
+  // Cria a tela principal com Drawer
+  function DrawerNavigator() {
     return (
       <Drawer.Navigator drawerContent={(props) => <Filter {...props} />}>
         <Drawer.Screen 
@@ -51,13 +28,14 @@ const Filter = () => {
     );
   }
   
-  function DrawerNavigator() {
+  // Cria as telas com Stack
+  function Router() {
     return (
       <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: '#661923' }, headerTintColor: '#fff'}}>
         {/* Tela que contém o Drawer */}
         <Stack.Screen 
           name="Início" 
-          component={DrawerNavigatorr} 
+          component={DrawerNavigator} 
           options={{ headerShown: false }}
         />
         {/* Outras telas usando Stack */}
@@ -69,10 +47,13 @@ const Filter = () => {
         <Stack.Screen 
           name="Visualizar Produto" 
           component={ViewProductScreen} 
-          options={{ title: 'Visualizar Produto' }}
+          options={({ navigation }) => ({
+            title: 'Visualizar Produto',
+            headerRight: () => <EditProduct navigation={navigation} />,
+          })}
         />
       </Stack.Navigator>
     );
   }
 
-  export default DrawerNavigator;
+  export default Router;

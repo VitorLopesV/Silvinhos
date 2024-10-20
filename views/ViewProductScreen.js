@@ -1,21 +1,44 @@
-import { View, Text, TextInput, Button,Image, TouchableOpacity} from "react-native";
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { View, Text, Image, TouchableOpacity} from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
-import Styling from "../assets/css/Styling";
-import CustomTextInput from "../components/CustomTextInput";
-import Formatter from "../util/Formatter";
+import Styling from '../assets/css/Styling';
+import CustomTextInput from '../components/CustomTextInput';
+import Formatter from '../util/Formatter';
 import { useNavigation } from '@react-navigation/native';
+import RemoveProductModal from '../components/ModalRemove';
 
-const ViewProductScreen = () =>{
+// Tela de visualização do produto
+const ViewProductScreen = () => {
   const navigation = useNavigation();
 
-    const [nomeProduto, setNomeProduto] = useState('');
-    const [tipoProduto, setTipoProduto] = useState('');
-    const [valorProduto, setValorProduto] = useState('');
-    const [quantidadeProduto, setQuantidadeProduto] = useState('');
-    const [descricaoProduto, setDescricaoProduto] = useState('');
-    const [imagemProduto, setImagemProduto] = useState(null);
+// ARMAZENA OS DADOS 
+  const [nomeProduto, setNomeProduto] = useState('');
+  const [tipoProduto, setTipoProduto] = useState('');
+  const [valorProduto, setValorProduto] = useState('');
+  const [quantidadeProduto, setQuantidadeProduto] = useState('');
+  const [descricaoProduto, setDescricaoProduto] = useState('');
+  const [imagemProduto, setImagemProduto] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
+//MODAL
+  // Abre o modal
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  // Fecha o modal e mantém na tela de visualização de produto
+  const doesNotRemoveProduct = () => {
+    setModalVisible(false);
+  };
+
+  // Fecha o modal, remove o produto e direciona o usuário a tela inicial.
+  const removeProduct = () => {
+    setModalVisible(false);
+    navigation.navigate('Início');
+  };
+  
+// INSERÇÃO DE DADOS
+  // Seleciona a imagem
   const handleImagePicker = () => {
     launchImageLibrary({ mediaType: 'photo' }, (response) => {
       if (response.assets && response.assets.length > 0) {
@@ -24,12 +47,14 @@ const ViewProductScreen = () =>{
     });
   };
 
+  // Remove a imagem inserida
   const handleRemoverImagem = () => {
     setImagemProduto(null);
   };
 
+  // Manipula o valores de texto inserido
   const handleValorChange = (text) => {
-    const valorFormatado = <Formatter text ={text}/>
+    const valorFormatado = <Formatter text={text} />;
     setValorProduto(valorFormatado);
   };
 
@@ -48,42 +73,25 @@ const ViewProductScreen = () =>{
           <Text style={Styling.removeButtonText}>X</Text>
         </TouchableOpacity>
       )}
-      
+
       <CustomTextInput
-        placeholder="Nome do Produto"
-        value={nomeProduto}
-        onChangeText={setNomeProduto}
+        nomeProduto={nomeProduto} 
+        setNomeProduto={setNomeProduto} 
+        tipoProduto={tipoProduto} 
+        setTipoProduto={setTipoProduto} 
+        valorProduto={valorProduto} 
+        handleValorChange={handleValorChange} 
+        quantidadeProduto={quantidadeProduto} 
+        setQuantidadeProduto={setQuantidadeProduto}  
+        descricaoProduto={descricaoProduto} 
+        setDescricaoProduto={setDescricaoProduto} 
       />
-      <CustomTextInput
-        placeholder="Tipo do produto"
-        value={tipoProduto}
-        onChangeText={setTipoProduto}
-      />
-      <CustomTextInput
-        placeholder="Valor Produto"
-        value={valorProduto}
-        onChangeText={handleValorChange}
-      />
-      <CustomTextInput
-        placeholder="Quantidade"
-        value={quantidadeProduto}
-        onChangeText={setQuantidadeProduto}
-      />
-      <TextInput
-        style={Styling.textDescriptionArea}
-        placeholder="Descrição"
-        placeholderTextColor="#aaa"
-        value={descricaoProduto}
-        onChangeText={setDescricaoProduto}
-        multiline={true}
-        numberOfLines={4}
-        maxLength={200}
-        textAlignVertical="top"
-        returnKeyType="done"
-      />
-      <TouchableOpacity style={Styling.button} onPress={() => navigation.navigate('Início')}>
-        <Text style={Styling.buttonText}>Cadastrar Produto</Text>
+
+      <TouchableOpacity style={Styling.trashButton} onPress={openModal}>
+        <Image source={require('../assets/img/removeProduct.png')} style={Styling.trashImage}/>
       </TouchableOpacity>
+
+      <RemoveProductModal visible={modalVisible} doesNotRemove={doesNotRemoveProduct} remove={removeProduct} />
     </View>
   );
 };

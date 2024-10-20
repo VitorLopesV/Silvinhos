@@ -1,6 +1,6 @@
 // IMPORTAÇÕES
 import { NavigationContainer } from '@react-navigation/native';
-import DrawerNavigator from './router/DrawerNavigator';
+import Router from './router/Router';
 import React, { useEffect } from 'react';
 import * as SQLite from 'expo-sqlite';
 
@@ -25,7 +25,7 @@ function App() {
   }, []);
   return (
     <NavigationContainer>
-      <DrawerNavigator />
+      <Router/>
     </NavigationContainer>
   );
 }

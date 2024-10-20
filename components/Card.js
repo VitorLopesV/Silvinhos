@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import Styling from '../assets/css/Styling';
 import { useNavigation } from '@react-navigation/native';
+import WineModal from './ModalCards'
 
+// Card de produto.
 const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptWine, onSelect }) => {
   const navigation = useNavigation();
 
@@ -22,16 +24,21 @@ const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptWine, onSel
   );
 };
 
+// Lista de cards de produto.
 const CardList = () => {
   const navigation = useNavigation();
 
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedWine, setSelectedWine] = useState({ name: '', quantity: '' });
 
+//MODAL
+  // Abre o modal.
   const openModal = (nameWine, quantityWine) => {
     setSelectedWine({ name: nameWine, quantity: quantityWine });
     setModalVisible(true);
   };
+
+  // Fecha o modal.
   const closeModal = () => {
     setModalVisible(false);
     navigation.navigate('Início');
@@ -45,7 +52,6 @@ const CardList = () => {
         priceWine="200,00" 
         quantityWine="12" 
         descriptWine="Um vinho bom para ocasiões especiais"
-        navigation={navigation}
         onSelect={openModal} 
       />
       <Card 
@@ -54,34 +60,14 @@ const CardList = () => {
         priceWine="300,00" 
         quantityWine="20" 
         descriptWine="Um vinho que serve para frios e derivados"
-        navigation={navigation}
         onSelect={openModal} 
       />
 
-      <Modal
-        transparent={true}
-        animationType="fade"
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={Styling.modalOverlay}>
-          <View style={Styling.modalContent}>
-            <Text style={Styling.modalTitle}>{selectedWine.name}</Text>
-            <Text style={Styling.modalText}>Quantidade: {selectedWine.quantity}</Text> 
-            <View style={Styling.modalButtonContainer}>
-              <TouchableOpacity style={Styling.modalButton}>
-                <Image style={Styling.plusMinusImage} source={require('../assets/img/minus.png')}/>
-              </TouchableOpacity>
-              <TouchableOpacity style={Styling.modalButton} onPress={closeModal}>
-                <Text style={Styling.modalButtonText}>Voltar</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={Styling.modalButton}>
-                <Image style={Styling.plusMinusImage} source={require('../assets/img/plus.png')}/>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </Modal>
+      <WineModal 
+        modalVisible={modalVisible}
+        closeModal={closeModal}
+        selectedWine={selectedWine}
+      />
     </View>
   );
 };

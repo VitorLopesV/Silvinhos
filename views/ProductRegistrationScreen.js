@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button,Image, TouchableOpacity, Text, Touchable } from 'react-native';
+import { View,Image, TouchableOpacity, Text} from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import Styling from '../assets/css/Styling';
 import CustomTextInput from "../components/CustomTextInput";
 import Formatter from '../util/Formatter';
 
+// Tela de cadastro de produto.
 const ProductRegistrationScreen = ({ navigation }) => {
+
+// ARMAZENA OS DADOS 
   const [nomeProduto, setNomeProduto] = useState('');
   const [tipoProduto, setTipoProduto] = useState('');
   const [valorProduto, setValorProduto] = useState('');
@@ -13,19 +16,8 @@ const ProductRegistrationScreen = ({ navigation }) => {
   const [descricaoProduto, setDescricaoProduto] = useState('');
   const [imagemProduto, setImagemProduto] = useState(null);
 
-  const handleAdicionarProduto = () => {
-    console.log({
-      nomeProduto,
-      tipoProduto,
-      valorProduto,
-      quantidadeProduto,
-      descricaoProduto,
-      imagemProduto,
-    });
-
-    navigation.navigate('Início');
-  };
-
+// INSERÇÃO DE DADOS
+  // Seleciona a imagem
   const handleImagePicker = () => {
     launchImageLibrary({ mediaType: 'photo' }, (response) => {
       if (response.assets && response.assets.length > 0) {
@@ -34,10 +26,12 @@ const ProductRegistrationScreen = ({ navigation }) => {
     });
   };
 
+  // Remove a imagem inserida
   const handleRemoverImagem = () => {
     setImagemProduto(null);
   };
 
+  // Manipula o valores de texto inserido
   const handleValorChange = (text) => {
     const valorFormatado = <Formatter text={text}/>
     setValorProduto(valorFormatado);
@@ -59,40 +53,20 @@ const ProductRegistrationScreen = ({ navigation }) => {
         </TouchableOpacity>
       )}
 
-<CustomTextInput
-        placeholder="Nome do Produto"
-        value={nomeProduto}
-        onChangeText={setNomeProduto}
-      />
       <CustomTextInput
-        placeholder="Tipo do produto"
-        value={tipoProduto}
-        onChangeText={setTipoProduto}
-      />
-      <CustomTextInput
-        placeholder="Valor Produto"
-        value={valorProduto}
-        onChangeText={handleValorChange}
-      />
-      <CustomTextInput
-        placeholder="Quantidade"
-        value={quantidadeProduto}
-        onChangeText={setQuantidadeProduto}
-      />
-      <TextInput
-        style={Styling.textDescriptionArea}
-        placeholder="Descrição"
-        placeholderTextColor="#aaa"
-        value={descricaoProduto}
-        onChangeText={setDescricaoProduto}
-        multiline={true}
-        numberOfLines={4}
-        maxLength={200}
-        textAlignVertical="top"
-        returnKeyType="done"
+        nomeProduto={nomeProduto} 
+        setNomeProduto={setNomeProduto} 
+        tipoProduto={tipoProduto} 
+        setTipoProduto={setTipoProduto} 
+        valorProduto={valorProduto} 
+        handleValorChange={handleValorChange} 
+        quantidadeProduto={quantidadeProduto} 
+        setQuantidadeProduto={setQuantidadeProduto}  
+        descricaoProduto={descricaoProduto} 
+        setDescricaoProduto={setDescricaoProduto} 
       />
 
-      <TouchableOpacity style={Styling.button} onPress={handleAdicionarProduto}>
+      <TouchableOpacity style={Styling.button} onPress={() => navigation.navigate('Início')}>
         <Text style={Styling.buttonText}>Cadastrar Produto</Text>
       </TouchableOpacity>
     </View>
