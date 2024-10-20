@@ -2,6 +2,7 @@ import React from 'react';
 import { TextInput, View } from 'react-native';
 import Styling from '../assets/css/Styling';
 
+// Text input constomizado 
 const CustomTextInput = (
   { nomeProduto, 
   setNomeProduto, 

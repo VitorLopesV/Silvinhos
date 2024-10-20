@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image, Modal } from 'react-native';
 import Styling from '../assets/css/Styling';
 
+// Modal que adiciona ou remove a quantidade de produtos do sistema.
 const WineModal = ({ modalVisible, closeModal, selectedWine }) => {
   return (
     <Modal

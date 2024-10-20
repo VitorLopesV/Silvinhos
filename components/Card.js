@@ -4,6 +4,7 @@ import Styling from '../assets/css/Styling';
 import { useNavigation } from '@react-navigation/native';
 import WineModal from './ModalCards'
 
+// Card de produto.
 const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptWine, onSelect }) => {
   const navigation = useNavigation();
 
@@ -23,17 +24,21 @@ const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptWine, onSel
   );
 };
 
+// Lista de cards de produto.
 const CardList = () => {
   const navigation = useNavigation();
 
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedWine, setSelectedWine] = useState({ name: '', quantity: '' });
 
+//MODAL
+  // Abre o modal.
   const openModal = (nameWine, quantityWine) => {
     setSelectedWine({ name: nameWine, quantity: quantityWine });
     setModalVisible(true);
   };
 
+  // Fecha o modal.
   const closeModal = () => {
     setModalVisible(false);
     navigation.navigate('Início');

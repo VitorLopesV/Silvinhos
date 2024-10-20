@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, Image, TouchableOpacity} from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import Styling from '../assets/css/Styling';
 import CustomTextInput from '../components/CustomTextInput';
@@ -7,9 +7,11 @@ import Formatter from '../util/Formatter';
 import { useNavigation } from '@react-navigation/native';
 import RemoveProductModal from '../components/ModalRemove';
 
+// Tela de visualização do produto
 const ViewProductScreen = () => {
   const navigation = useNavigation();
 
+// ARMAZENA OS DADOS 
   const [nomeProduto, setNomeProduto] = useState('');
   const [tipoProduto, setTipoProduto] = useState('');
   const [valorProduto, setValorProduto] = useState('');
@@ -18,21 +20,25 @@ const ViewProductScreen = () => {
   const [imagemProduto, setImagemProduto] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
+//MODAL
+  // Abre o modal
   const openModal = () => {
     setModalVisible(true);
   };
 
-  const closeModal = () => {
+  // Fecha o modal e mantém na tela de visualização de produto
+  const doesNotRemoveProduct = () => {
     setModalVisible(false);
-    navigation.navigate('Visualizar Produto');
   };
 
-  const teste = () => {
+  // Fecha o modal, remove o produto e direciona o usuário a tela inicial.
+  const removeProduct = () => {
     setModalVisible(false);
     navigation.navigate('Início');
   };
   
-
+// INSERÇÃO DE DADOS
+  // Seleciona a imagem
   const handleImagePicker = () => {
     launchImageLibrary({ mediaType: 'photo' }, (response) => {
       if (response.assets && response.assets.length > 0) {
@@ -41,10 +47,12 @@ const ViewProductScreen = () => {
     });
   };
 
+  // Remove a imagem inserida
   const handleRemoverImagem = () => {
     setImagemProduto(null);
   };
 
+  // Manipula o valores de texto inserido
   const handleValorChange = (text) => {
     const valorFormatado = <Formatter text={text} />;
     setValorProduto(valorFormatado);
@@ -83,7 +91,7 @@ const ViewProductScreen = () => {
         <Text style={Styling.buttonText}>Remover Produto</Text>
       </TouchableOpacity>
 
-      <RemoveProductModal visible={modalVisible} onClose={closeModal} teste={teste} />
+      <RemoveProductModal visible={modalVisible} doesNotRemove={doesNotRemoveProduct} remove={removeProduct} />
     </View>
   );
 };

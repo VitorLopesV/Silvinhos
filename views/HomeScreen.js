@@ -3,6 +3,7 @@ import Styling from '../assets/css/Styling';
 import React from 'react';
 import CardList from '../components/Card';
 
+// Tela principal
 const HomeScreen = ({ navigation }) => {
     return (
       <View style={Styling.MainInterface}>
