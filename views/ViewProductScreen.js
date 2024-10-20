@@ -87,8 +87,8 @@ const ViewProductScreen = () => {
         setDescricaoProduto={setDescricaoProduto} 
       />
 
-      <TouchableOpacity style={Styling.button} onPress={openModal}>
-        <Text style={Styling.buttonText}>Remover Produto</Text>
+      <TouchableOpacity style={Styling.trashButton} onPress={openModal}>
+        <Image source={require('../assets/img/removeProduct.png')} style={Styling.trashImage}/>
       </TouchableOpacity>
 
       <RemoveProductModal visible={modalVisible} doesNotRemove={doesNotRemoveProduct} remove={removeProduct} />

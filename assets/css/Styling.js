@@ -62,6 +62,10 @@ const Styling = StyleSheet.create({
       height: 45,
       marginLeft:15,
     },
+    trashImage: {
+      width: 50,
+      height: 50,
+    },
     textTitle:{
       marginTop:8,
       marginBottom: 6,
@@ -229,6 +233,14 @@ const Styling = StyleSheet.create({
     button:{
       width: 160,
       height:43,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 5,
+      backgroundColor: '#661923',
+    },
+    trashButton:{
+      width: 130,
+      height:50,
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 5,
