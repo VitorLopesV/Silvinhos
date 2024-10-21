@@ -32,10 +32,35 @@ const ProductRegistrationScreen = ({ navigation }) => {
   };
 
   // Manipula o valores de texto inserido
-const handleValorChange = (text) => {
-  const valorFormatado = Formatter(text); // Chamando a função diretamente, sem usar JSX
-  setValorProduto(valorFormatado);
-};
+    const handleValorChange = (text) => {
+    const valorFormatado = Formatter(text);  // Função de formatação
+    setValorProduto(valorFormatado);
+
+  };
+  const Formatter = (text) => {
+    // Remove caracteres que não são números ou vírgulas, utilizando regex
+    const valor = text.replace(/[^0-9,]/g, '');
+  
+    // Se o texto estiver vazio, retorna vazio
+    if (valor.length === 0) return '';
+  
+    // Separa a parte inteira da decimal
+    let [inteiro, decimal] = valor.split(',');
+  
+    // Formata a parte inteira com pontos a cada 3 dígitos, também utilizando regex
+    inteiro = inteiro.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  
+    // Limitação de casas decimais
+    if (decimal) {
+      decimal = decimal.length > 4 ? decimal.slice(0, 4) : decimal; 
+    } else {
+      decimal = ''; // Não adiciona casas decimais se o usuário não inseriu
+    }
+  
+    // Retorna o valor formatado com "R$"
+    return decimal ? `R$ ${inteiro},${decimal}` : `R$ ${inteiro}`;
+  };
+    
 
   return (
     <View style={Styling.productContainer}>
