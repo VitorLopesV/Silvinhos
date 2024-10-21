@@ -32,10 +32,10 @@ const ProductRegistrationScreen = ({ navigation }) => {
   };
 
   // Manipula o valores de texto inserido
-  const handleValorChange = (text) => {
-    const valorFormatado = <Formatter text={text}/>
-    setValorProduto(valorFormatado);
-  };
+const handleValorChange = (text) => {
+  const valorFormatado = Formatter(text); // Chamando a função diretamente, sem usar JSX
+  setValorProduto(valorFormatado);
+};
 
   return (
     <View style={Styling.productContainer}>

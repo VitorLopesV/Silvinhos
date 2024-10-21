@@ -54,9 +54,9 @@ const handleRemoverImagem = () => {
 
   // Manipula o valores de texto inserido
 const handleValorChange = (text) => {
-    const valorFormatado = <Formatter text={text} />;
+    const valorFormatado = Formatter(text);
     setValorProduto(valorFormatado);
-};
+  };
 
     //Navegando Modal como prop
     const navigateToEditProduct = () => {
