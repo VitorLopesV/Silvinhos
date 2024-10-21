@@ -38,27 +38,23 @@ const ProductRegistrationScreen = ({ navigation }) => {
 
   };
   const Formatter = (text) => {
-    // Remove caracteres que não são números ou vírgulas, utilizando regex
-    const valor = text.replace(/[^0-9,]/g, '');
+    // Remove tudo que não for número, utilizando regex
+    let valor = text.replace(/[^0-9]/g, '');
   
-    // Se o texto estiver vazio, retorna vazio
-    if (valor.length === 0) return '';
-  
-    // Separa a parte inteira da decimal
-    let [inteiro, decimal] = valor.split(',');
-  
-    // Formata a parte inteira com pontos a cada 3 dígitos, também utilizando regex
-    inteiro = inteiro.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-  
-    // Limitação de casas decimais
-    if (decimal) {
-      decimal = decimal.length > 4 ? decimal.slice(0, 4) : decimal; 
-    } else {
-      decimal = ''; // Não adiciona casas decimais se o usuário não inseriu
+    // Se o valor for menor que 3 dígitos, apenas retorna o número como está
+    if (valor.length <= 2) {
+      return `R$ ${valor}`;
     }
   
+    // Separa a parte inteira e as casas decimais
+    const inteiro = valor.slice(0, -2); // Tudo menos os dois últimos caracteres
+    const decimal = valor.slice(-2);    // Os dois últimos caracteres
+  
+    // Formata a parte inteira com pontos para separar os milhares
+    const inteiroFormatado = inteiro.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  
     // Retorna o valor formatado com "R$"
-    return decimal ? `R$ ${inteiro},${decimal}` : `R$ ${inteiro}`;
+    return `R$ ${inteiroFormatado},${decimal}`;
   };
     
 
