@@ -9,7 +9,8 @@ const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptWine, onSel
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity style={Styling.cardOfWineContainer} onPress={() => navigation.navigate('Visualizar Produto')}>
+    <TouchableOpacity style={Styling.cardOfWineContainer} onPress={() => navigation.navigate('Visualizar Produto', {
+      nameWine, typeWine, priceWine, quantityWine, descriptWine})}>
       <Image style={Styling.imageWine} source={require('../assets/img/vinho.jpg')} />
       <View style={Styling.infoOfWineContainer}>
         <Text style={Styling.nameWine}>{nameWine}</Text>
@@ -24,9 +25,9 @@ const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptWine, onSel
 };
 
 // Lista dos vinhos
-const wineData = [
-  { id: '1', nameWine: 'Vinho 01', typeWine: 'Suave', priceWine: '200,00', quantityWine: '12', descriptWine: 'Um vinho bom para ocasiões especiais' },
-  { id: '2', nameWine: 'Vinho 02', typeWine: 'Tinto', priceWine: '300,00', quantityWine: '20', descriptWine: 'Um vinho que serve para frios e derivados' },
+const wineList = [
+  { id: '1', nameWine: 'Vinho 01', typeWine: 'Suave', priceWine: '200,00', quantityWine: '12', descriptWine: 'Um vinho bom para ocasiões especiais.' },
+  { id: '2', nameWine: 'Vinho 02', typeWine: 'Tinto', priceWine: '300,00', quantityWine: '20', descriptWine: 'Um vinho que serve para frios e derivados.' },
 ];
 
 const CardList = () => {
@@ -61,7 +62,7 @@ const CardList = () => {
   return (
     <View style={Styling.listOfWineContainer}>
       <FlatList
-        data={wineData}
+        data={wineList}
         renderItem={renderCards}
         keyExtractor={item => item.id}
       />
