@@ -1,24 +1,36 @@
-import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import Styling from '../assets/css/Styling';
 import CustomTextInput from '../components/CustomTextInput';
 import Formatter from '../util/Formatter';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import RemoveProductModal from '../components/ModalRemove';
 
-// Tela de visualização do produto
 const ViewProductScreen = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
+  const route = useRoute(); // Usado para obter os dados
 
-// ARMAZENA OS DADOS 
-const [nomeProduto, setNomeProduto] = useState('');
-const [tipoProduto, setTipoProduto] = useState('');
-const [valorProduto, setValorProduto] = useState('');
-const [quantidadeProduto, setQuantidadeProduto] = useState('');
-const [descricaoProduto, setDescricaoProduto] = useState('');
-const [imagemProduto, setImagemProduto] = useState(null);
-const [modalVisible, setModalVisible] = useState(false);
+  // Pega os dados dos vinhos existentes no cards
+  const { nameWine, typeWine, priceWine, quantityWine, descriptWine } = route.params;
+
+  // ARMAZENA OS DADOS
+  const [nomeProduto, setNomeProduto] = useState('');
+  const [tipoProduto, setTipoProduto] = useState('');
+  const [valorProduto, setValorProduto] = useState('');
+  const [quantidadeProduto, setQuantidadeProduto] = useState('');
+  const [descricaoProduto, setDescricaoProduto] = useState('');
+  const [imagemProduto, setImagemProduto] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  // Preenche os campos de texto assim que a tela é carregada com os dados do vinho
+  useEffect(() => {
+    setNomeProduto(nameWine);
+    setTipoProduto(typeWine);
+    setValorProduto(priceWine);
+    setQuantidadeProduto(quantityWine);
+    setDescricaoProduto(descriptWine);
+  }, [nameWine, typeWine, priceWine, quantityWine, descriptWine]);
 
 //MODAL
   // Abre o modal
@@ -54,9 +66,9 @@ const handleRemoverImagem = () => {
 
   // Manipula o valores de texto inserido
 const handleValorChange = (text) => {
-    const valorFormatado = <Formatter text={text} />;
+    const valorFormatado = Formatter(text);
     setValorProduto(valorFormatado);
-};
+  };
 
     //Navegando Modal como prop
     const navigateToEditProduct = () => {

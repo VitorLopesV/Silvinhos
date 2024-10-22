@@ -12,7 +12,7 @@ const Styling = StyleSheet.create({
     productButton: {
       width: 350,
       height: 45,
-      marginVertical: 12,
+      marginVertical: 14,
       backgroundColor: '#661923', 
       justifyContent: 'center',
       alignItems: 'center',
@@ -77,7 +77,7 @@ const Styling = StyleSheet.create({
     cardOfWineContainer: {
       flexDirection: 'row', 
       backgroundColor: '#661923',
-      marginVertical: 12,
+      marginVertical: 14,
       marginLeft: 25,
       borderRadius: 7,
       alignItems: 'center',
@@ -85,11 +85,11 @@ const Styling = StyleSheet.create({
       height: 110,
     },
     imageWine: {
-      width: 125,
-      height: 125,
-      borderRadius: 300,
+      width: 128,
+      height: 128,
+      borderRadius: 200,
       position: 'absolute', 
-      left: -32,
+      left: -26,
     },
     infoOfWineContainer: {
       marginLeft: 125,
