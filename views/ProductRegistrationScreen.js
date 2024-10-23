@@ -4,7 +4,7 @@ import { launchImageLibrary } from 'react-native-image-picker';
 import Styling from '../assets/css/Styling';
 import CustomTextInput from "../components/CustomTextInput";
 import Formatter from '../util/Formatter';
-import Vinhos from '../util/db/Vinhos';
+import db from '../util/db/db';
 import { useNavigation } from '@react-navigation/native';
 
 // Tela de cadastro de produto.
@@ -42,7 +42,7 @@ const ProductRegistrationScreen = () => {
   };
   
   const addProduct = () => {
-    Vinhos.createProduct(name, tipo, preco, quantidade, descricao);
+    db.createProduct(name, tipo, preco, quantidade, descricao);
     navigation.navigate('Início');
   }
     
