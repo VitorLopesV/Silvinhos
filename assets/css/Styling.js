@@ -30,6 +30,24 @@ const Styling = StyleSheet.create({
       color: 'white',
       fontSize: 16
     },
+    dropDownContainer: {
+      width: '70%', 
+      marginLeft:53,
+      borderColor: '#000',
+      borderWidth: 1,
+      borderRadius: 5,
+    },
+    dropDownPicker: {
+      width: '70%',
+      maxWidth: 400,
+      height: 42,
+      borderColor: '#661923',
+      borderWidth: 1,
+      marginBottom: 23,
+      marginLeft:53,
+      borderRadius: 5,
+      backgroundColor: '#FFFFFF',
+    },
     drawerContainer: {
       flex: 1,
       justifyContent: 'top',
@@ -259,9 +277,9 @@ const Styling = StyleSheet.create({
       textAlign: 'left',
     },
     textArea: {
-      width: '65%',
+      width: '70%',
       maxWidth: 400,
-      height: 42,
+      height: 45,
       borderColor: '#661923',
       borderWidth: 1,
       marginBottom: 15,
@@ -273,7 +291,7 @@ const Styling = StyleSheet.create({
       textAlignVertical: 'top',
     },
     textDescriptionArea: {
-      width: '65%',
+      width: '70%',
       maxWidth: 400,
       height: 80,
       textAlignVertical: 'top',

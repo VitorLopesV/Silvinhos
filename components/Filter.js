@@ -9,16 +9,25 @@ const Filter = () => {
             <SearchBar/>
             <Text style={Styling.textTitle}>Tipos de vinhos:</Text>
             <TouchableOpacity style={Styling.leftBarButton}>
-                <Text style={Styling.leftBarButtonText}>Seco</Text>
+                <Text style={Styling.leftBarButtonText}>Espumante</Text>
             </TouchableOpacity>
             <TouchableOpacity style={Styling.leftBarButton}>
-                <Text style={Styling.leftBarButtonText}>Suave</Text>
+                <Text style={Styling.leftBarButtonText}>Branco</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={Styling.leftBarButton}>
+                <Text style={Styling.leftBarButtonText}>Doce</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={Styling.leftBarButton}>
+                <Text style={Styling.leftBarButtonText}>Rosé</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={Styling.leftBarButton}>
+                <Text style={Styling.leftBarButtonText}>Seco</Text>
             </TouchableOpacity>
             <TouchableOpacity style={Styling.leftBarButton}>
                 <Text style={Styling.leftBarButtonText}>Tinto</Text>
             </TouchableOpacity>
             <TouchableOpacity style={Styling.leftBarButton}>
-                <Text style={Styling.leftBarButtonText}>Espumante</Text>
+                <Text style={Styling.leftBarButtonText}>Verde</Text>
             </TouchableOpacity>
         </View>
     );

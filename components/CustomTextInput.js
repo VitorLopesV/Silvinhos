@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextInput, View } from 'react-native';
 import Styling from '../assets/css/Styling';
+import DropDownPicker from 'react-native-dropdown-picker';
 
-// Text input constomizado 
+// Text input customizado
 const CustomTextInput = (
   { nomeProduto, 
   setNomeProduto, 
@@ -14,6 +15,19 @@ const CustomTextInput = (
   setQuantidadeProduto, 
   descricaoProduto, 
   setDescricaoProduto  }) => {
+
+  // Estado local para o DropDownPicker
+  const [open, setOpen] = useState(false);
+  const [items, setItems] = useState([
+    { label: 'Espumante', value: 'espumante' },
+    { label: 'Vinho Branco', value: 'vinho branco' },
+    { label: 'Vinho Doce', value: 'vinho doce' },
+    { label: 'Vinho Rosé', value: 'vinho rosé' },
+    { label: 'Vinho Seco', value: 'Vinho Seco' },
+    { label: 'Vinho Tinto', value: 'vinho tinto' },
+    { label: 'Vinho Verde', value: 'vinho verde' }
+  ]);
+
   return (
     <View style={Styling.container}>
       <TextInput
@@ -24,20 +38,25 @@ const CustomTextInput = (
         onChangeText={setNomeProduto}
         returnKeyType="done"
       />
-      <TextInput
-        style={Styling.textArea}
-        placeholder="Tipo do Produto"
-        placeholderTextColor="#aaa"
+      
+      <DropDownPicker
+        style={Styling.dropDownPicker}
+        open={open}
         value={tipoProduto}
-        onChangeText={setTipoProduto}
-        returnKeyType="done"
+        items={items}
+        setOpen={setOpen}
+        setValue={setTipoProduto}
+        setItems={setItems}
+        placeholder="Selecione o tipo do produto" 
+        dropDownContainerStyle={Styling.dropDownContainer} 
       />
+
       <TextInput
         style={Styling.textArea}
         placeholder="Valor do Produto"
         placeholderTextColor="#aaa"
         value={valorProduto}
-        onChangeText={handleValorChange} //  função de mudança de texto
+        onChangeText={handleValorChange}
         keyboardType="numeric"
         returnKeyType="done"
       />
