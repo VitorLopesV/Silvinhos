@@ -5,7 +5,6 @@ import Styling from '../assets/css/Styling';
 import CustomTextInput from '../components/CustomTextInput';
 import Formatter from '../util/Formatter';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import RemoveProductModal from '../components/ModalRemove';
 
 const ViewProductScreen = () => {
   const navigation = useNavigation();
@@ -32,23 +31,6 @@ const ViewProductScreen = () => {
     setDescricaoProduto(descriptWine);
   }, [nameWine, typeWine, priceWine, quantityWine, descriptWine]);
 
-//MODAL
-  // Abre o modal
-const openModal = () => {
-    setModalVisible(true);
-};
-
-  // Fecha o modal e mantém na tela de visualização de produto
-const doesNotRemoveProduct = () => {
-    setModalVisible(false);
-};
-
-  // Fecha o modal, remove o produto e direciona o usuário a tela inicial.
-const removeProduct = () => {
-    setModalVisible(false);
-    navigation.navigate('Início');
-};
-
 // INSERÇÃO DE DADOS
   // Seleciona a imagem
 const handleImagePicker = () => {
@@ -70,15 +52,6 @@ const handleValorChange = (text) => {
     setValorProduto(valorFormatado);
   };
 
-    //Navegando Modal como prop
-    const navigateToEditProduct = () => {
-        navigation.navigate('EditProduct', {
-        openModal, 
-        doesNotRemoveProduct,
-        removeProduct,
-        modalVisible
-    });
-}
 
 return (
     <View style={Styling.productContainer}>
@@ -112,8 +85,6 @@ return (
     <TouchableOpacity style={Styling.trashButton} onPress={() => navigation.navigate('Início')}>
         <Text style={Styling.buttonText}>Salvar</Text>
     </TouchableOpacity>
-
-    <RemoveProductModal visible={modalVisible} doesNotRemove={doesNotRemoveProduct} remove={removeProduct} />
     </View>
 );
 };
