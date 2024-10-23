@@ -4,16 +4,19 @@ import { launchImageLibrary } from 'react-native-image-picker';
 import Styling from '../assets/css/Styling';
 import CustomTextInput from "../components/CustomTextInput";
 import Formatter from '../util/Formatter';
+import Vinhos from '../util/db/Vinhos';
+import { useNavigation } from '@react-navigation/native';
 
 // Tela de cadastro de produto.
-const ProductRegistrationScreen = ({ navigation }) => {
+const ProductRegistrationScreen = () => {
+  const navigation = useNavigation();
 
 // ARMAZENA OS DADOS 
-  const [nomeProduto, setNomeProduto] = useState('');
-  const [tipoProduto, setTipoProduto] = useState('');
-  const [valorProduto, setValorProduto] = useState('');
-  const [quantidadeProduto, setQuantidadeProduto] = useState('');
-  const [descricaoProduto, setDescricaoProduto] = useState('');
+  const [name, setName] = useState('');
+  const [tipo, setTipo] = useState('');
+  const [preco, setPreco] = useState('');
+  const [quantidade, setQuantidade] = useState('');
+  const [descricao, setDescricao] = useState('');
   const [imagemProduto, setImagemProduto] = useState(null);
 
 // INSERÇÃO DE DADOS
@@ -34,30 +37,15 @@ const ProductRegistrationScreen = ({ navigation }) => {
   // Manipula o valores de texto inserido
     const handleValorChange = (text) => {
     const valorFormatado = Formatter(text);  // Função de formatação
-    setValorProduto(valorFormatado);
+    setPreco(valorFormatado);
 
   };
-  const Formatter = (text) => {
-    // Remove tudo que não for número, utilizando regex
-    let valor = text.replace(/[^0-9]/g, '');
   
-    // Se o valor for menor que 3 dígitos, apenas retorna o número como está
-    if (valor.length <= 2) {
-      return `R$ ${valor}`;
-    }
-  
-    // Separa a parte inteira e as casas decimais
-    const inteiro = valor.slice(0, -2); // Tudo menos os dois últimos caracteres
-    const decimal = valor.slice(-2);    // Os dois últimos caracteres
-  
-    // Formata a parte inteira com pontos para separar os milhares
-    const inteiroFormatado = inteiro.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-  
-    // Retorna o valor formatado com "R$"
-    return `R$ ${inteiroFormatado},${decimal}`;
-  };
+  const addProduct = () => {
+    Vinhos.createProduct(name, tipo, preco, quantidade, descricao);
+    navigation.navigate('Início');
+  }
     
-
   return (
     <View style={Styling.productContainer}>
       <TouchableOpacity style={Styling.imageUpload} onPress={handleImagePicker}>
@@ -75,20 +63,21 @@ const ProductRegistrationScreen = ({ navigation }) => {
       )}
 
       <CustomTextInput
-        nomeProduto={nomeProduto} 
-        setNomeProduto={setNomeProduto} 
-        tipoProduto={tipoProduto} 
-        setTipoProduto={setTipoProduto} 
-        valorProduto={valorProduto} 
+        nomeProduto={name} 
+        setNomeProduto={setName} 
+        tipoProduto={tipo} 
+        setTipoProduto={setTipo} 
+        valorProduto={preco} 
         handleValorChange={handleValorChange} 
-        quantidadeProduto={quantidadeProduto} 
-        setQuantidadeProduto={setQuantidadeProduto}  
-        descricaoProduto={descricaoProduto} 
-        setDescricaoProduto={setDescricaoProduto} 
+        quantidadeProduto={quantidade} 
+        setQuantidadeProduto={setQuantidade}  
+        descricaoProduto={descricao} 
+        setDescricaoProduto={ setDescricao} 
       />
 
-      <TouchableOpacity style={Styling.button} onPress={() => navigation.navigate('Início')}>
+      <TouchableOpacity style={Styling.button} onPress={addProduct}>
         <Text style={Styling.buttonText}>Cadastrar Produto</Text>
+        
       </TouchableOpacity>
     </View>
   );
