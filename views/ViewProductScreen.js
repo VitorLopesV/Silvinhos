@@ -6,6 +6,7 @@ import CustomTextInput from '../components/CustomTextInput';
 import Formatter from '../util/Formatter';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
+// Tela de visualização, edição e remoção de produto
 const ViewProductScreen = () => {
   const navigation = useNavigation();
   const route = useRoute(); // Usado para obter os dados

@@ -3,7 +3,7 @@ import { TextInput, View } from 'react-native';
 import Styling from '../assets/css/Styling';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-// Text input customizado
+// Text input customizado para as telas de cadastro de produto e visualização de produto
 const CustomTextInput = (
   { nomeProduto, 
   setNomeProduto, 
