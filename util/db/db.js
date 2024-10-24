@@ -10,16 +10,15 @@ db.transaction((tx) => {
   });
   
   // Retorna todos os produtos do banco de dados.
-  const getAllProducts = () => {
+  const getAllProducts = (callback) => {
     db.transaction((tx) => {
       tx.executeSql(
         "SELECT * FROM vinhos;",
         [],
         (_, { rows }) => {
-          const teste = rows._array
-          teste.forEach((produto) => {
-          console.log(produto); // Imprime os resultados no terminal
-        })},
+          const produto = rows._array;
+          callback(produto); // Chame o callback com a lista de produtos
+        },
         (_, error) => {
           console.error("Erro ao buscar produtos:", error); // Imprime o erro no terminal
         }
@@ -35,8 +34,8 @@ export const createProduct = (name, tipo, preco, quantidade, descricao) => {
       'INSERT INTO vinhos (name, tipo, preço, quantidade, descrição) VALUES (?, ?, ?, ?, ?);',
       [name, tipo, preco, quantidade, descricao],
       async (_, result) => {
-        console.log("Produto adicionado com sucesso:", result);
-
+        console.log("\nVinho adicionado com sucesso:", result);
+        console.log("Nome do vinho:", name, "Tipo:", tipo, "Valor:", preco, "Quantidade:", quantidade, "Descrição:", descricao)
       },
       (_, error) => {
         console.error("Erro ao adicionar produto:", error);
