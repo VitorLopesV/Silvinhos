@@ -25,17 +25,16 @@ const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptWine, onSel
   );
 };
 
-// Lista dos vinhos
 const CardList = () => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedWine, setSelectedWine] = useState({ name: '', quantity: '' });
-  const [wineList, setWineList] = useState([]);
+  const [wineList, setWineList] = useState([]); // Lista dos vinhos
 
   // Função para carregar vinhos do banco de dados
   const loadWines = () => {
-    db.getAllProducts((produto) => {
-      setWineList(produto); // Atualiza a lista de vinho
+    db.getAllProducts((produtos) => {
+      setWineList(produtos); // Atualiza a lista dos vinhos
     });
   };
 
@@ -46,7 +45,6 @@ const CardList = () => {
     const unsubscribe = navigation.addListener('focus', () => {
       loadWines();
     });
-
     return unsubscribe;
   }, [navigation]);
 

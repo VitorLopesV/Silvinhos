@@ -9,12 +9,12 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 // Tela de visualização, edição e remoção de produto
 const ViewProductScreen = () => {
   const navigation = useNavigation();
-  const route = useRoute(); // Usado para obter os dados
+  const route = useRoute(); // Usado para obter os dados da tela dos cards
 
-  // Pega os dados dos vinhos existentes no cards
+  // Pega os dados dos vinhos existentes nos cards
   const { nameWine, typeWine, priceWine, quantityWine, descriptWine } = route.params;
 
-  // ARMAZENA OS DADOS
+  // ARMAZENA OS DADOS 
   const [nomeProduto, setNomeProduto] = useState('');
   const [tipoProduto, setTipoProduto] = useState('');
   const [valorProduto, setValorProduto] = useState('');
@@ -28,7 +28,7 @@ const ViewProductScreen = () => {
     setNomeProduto(nameWine);
     setTipoProduto(typeWine);
     setValorProduto(priceWine);
-    setQuantidadeProduto(quantityWine);
+    setQuantidadeProduto(quantityWine ? quantityWine.toString() : ''); // Certifique-se de que é uma string
     setDescricaoProduto(descriptWine);
   }, [nameWine, typeWine, priceWine, quantityWine, descriptWine]);
 
