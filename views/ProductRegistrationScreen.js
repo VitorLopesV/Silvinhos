@@ -40,6 +40,12 @@ const ProductRegistrationScreen = () => {
     setPreco(valorFormatado);
 
   };
+
+  // Não permite quantidades com vírgula
+  const handleQuantityChange = (text) => {
+    const removeCaracter = text.replace(/,/g, ''); // Remove vírgulas
+    setQuantidade(removeCaracter);
+  };
   
   const addProduct = () => {
     db.createProduct(name, tipo, preco, quantidade, descricao);
@@ -70,7 +76,7 @@ const ProductRegistrationScreen = () => {
         valorProduto={preco} 
         handleValorChange={handleValorChange} 
         quantidadeProduto={quantidade} 
-        setQuantidadeProduto={setQuantidade}  
+        handleQuantityChange={handleQuantityChange}  
         descricaoProduto={descricao} 
         setDescricaoProduto={ setDescricao} 
       />

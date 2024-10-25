@@ -12,7 +12,7 @@ const CustomTextInput = (
   valorProduto, 
   handleValorChange, 
   quantidadeProduto, 
-  setQuantidadeProduto, 
+  handleQuantityChange, 
   descricaoProduto, 
   setDescricaoProduto  }) => {
 
@@ -65,7 +65,7 @@ const CustomTextInput = (
         placeholder="Quantidade"
         placeholderTextColor="#aaa"
         value={quantidadeProduto}
-        onChangeText={setQuantidadeProduto}
+        onChangeText={handleQuantityChange}
         keyboardType="numeric"
         returnKeyType="done"
       />
