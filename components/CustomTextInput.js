@@ -23,7 +23,7 @@ const CustomTextInput = (
     { label: 'Vinho Branco', value: 'vinho branco' },
     { label: 'Vinho Doce', value: 'vinho doce' },
     { label: 'Vinho Rosé', value: 'vinho rosé' },
-    { label: 'Vinho Seco', value: 'Vinho Seco' },
+    { label: 'Vinho Seco', value: 'vinho seco' },
     { label: 'Vinho Tinto', value: 'vinho tinto' },
     { label: 'Vinho Verde', value: 'vinho verde' }
   ]);
