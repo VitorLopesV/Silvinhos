@@ -28,13 +28,13 @@ const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptWine, onSel
 const CardList = () => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedWine, setSelectedWine] = useState({ name: '', quantity: '' });
+  const [selectedWine, setSelectedWine] = useState({ name: '', quantity: 0 });
   const [wineList, setWineList] = useState([]); // Lista dos vinhos
 
   // Função para carregar vinhos do banco de dados
   const loadWines = () => {
     db.getAllProducts((produtos) => {
-      setWineList(produtos); // Atualiza a lista dos vinhos
+      setWineList(produtos); 
     });
   };
 
@@ -60,6 +60,37 @@ const CardList = () => {
     navigation.navigate('Início');
   };
 
+  // Função para atualizar a quantidade de um vinho na lista 
+  const updateQuantity = (name, newQuantity) => {
+    db.updateProductQuantity(name, newQuantity);
+    setWineList(prevWineList => {
+      return prevWineList.map(wine => 
+        wine.name === name ? { ...wine, quantidade: newQuantity } : wine
+      );
+    });
+  };
+
+  // Função para aumentar quantidade de um vinho pelo pop-up
+  const plusQuantity = () => {
+    setSelectedWine(prev => {
+      const newQuantity = prev.quantity + 1;
+      updateQuantity(prev.name, newQuantity);
+      return { ...prev, quantity: newQuantity };
+    });
+  };
+
+  // Função para diminuir quantidade de um vinho pelo pop-up
+  const minusQuantity = () => {
+    setSelectedWine(prev => {
+      if (prev.quantity > 0) {
+        const newQuantity = prev.quantity - 1;
+        updateQuantity(prev.name, newQuantity);
+        return { ...prev, quantity: newQuantity };
+      }
+      return prev;
+    });
+  };
+
   // Função para renderizar o card e cada informação sobre o vinho
   const renderCards = ({ item }) => (
     <Card 
@@ -83,6 +114,8 @@ const CardList = () => {
         modalVisible={modalVisible}
         closeModal={closeModal}
         selectedWine={selectedWine}
+        plusWine={plusQuantity}
+        minusWine={minusQuantity}
       />
     </View>
   );

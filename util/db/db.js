@@ -60,9 +60,21 @@ export const removeProduct = (name) => {
     );
   });
 };
+
+// Atualiza a quantidade de um vinho no banco de dados.
+export const updateProductQuantity = (name, newQuantity) => {
+  db.transaction(tx => {
+    tx.executeSql(
+      'UPDATE vinhos SET quantidade = ? WHERE name = ?;',
+      [newQuantity, name]
+    );
+  });
+};
+
   
   export default {
     createProduct,
     getAllProducts,
     removeProduct,
+    updateProductQuantity,
   };
