@@ -126,7 +126,7 @@ const Styling = StyleSheet.create({
     },
 
     // Modal Cards
-    editButton: {
+    editQuantityButton: {
       width: 40, 
       height: 40, 
       borderRadius: 7, 

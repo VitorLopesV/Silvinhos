@@ -5,10 +5,9 @@ import WineModal from './ModalCards';
 import Styling from '../assets/css/Styling';
 import db from '../util/db/db';
 
-// Estrutura dos cards
 const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptWine, onSelect }) => {
   const navigation = useNavigation();
-
+// Estrutura dos cards
   return (
     <TouchableOpacity style={Styling.cardOfWineContainer} onPress={() => navigation.navigate('Visualizar Produto', {
       nameWine, typeWine, priceWine, quantityWine, descriptWine })}>
@@ -18,7 +17,7 @@ const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptWine, onSel
         <Text style={Styling.detailsOfWine}>Valor: {priceWine}</Text>
         <Text style={Styling.detailsOfWine}>Quantidade: {quantityWine}</Text>
       </View>
-      <TouchableOpacity style={Styling.editButton} onPress={() => onSelect(nameWine, quantityWine)}>
+      <TouchableOpacity style={Styling.editQuantityButton} onPress={() => onSelect(nameWine, quantityWine)}>
         <Image style={Styling.adcImage} source={require('../assets/img/adc.png')} />
       </TouchableOpacity>
     </TouchableOpacity>
@@ -48,47 +47,16 @@ const CardList = () => {
     return unsubscribe;
   }, [navigation]);
 
-  // Abre o modal
+  // Abre o modal (pop-up) dos cards
   const openModal = (nameWine, quantityWine) => {
     setSelectedWine({ name: nameWine, quantity: quantityWine });
     setModalVisible(true);
   };
 
-  // Fecha o modal
+  // Fecha o modal (pop-up) dos cards
   const closeModal = () => {
     setModalVisible(false);
     navigation.navigate('Início');
-  };
-
-  // Função para atualizar a quantidade de um vinho na lista 
-  const updateQuantity = (name, newQuantity) => {
-    db.updateProductQuantity(name, newQuantity);
-    setWineList(prevWineList => {
-      return prevWineList.map(wine => 
-        wine.name === name ? { ...wine, quantidade: newQuantity } : wine
-      );
-    });
-  };
-
-  // Função para aumentar quantidade de um vinho pelo pop-up
-  const plusQuantity = () => {
-    setSelectedWine(prev => {
-      const newQuantity = prev.quantity + 1;
-      updateQuantity(prev.name, newQuantity);
-      return { ...prev, quantity: newQuantity };
-    });
-  };
-
-  // Função para diminuir quantidade de um vinho pelo pop-up
-  const minusQuantity = () => {
-    setSelectedWine(prev => {
-      if (prev.quantity > 0) {
-        const newQuantity = prev.quantity - 1;
-        updateQuantity(prev.name, newQuantity);
-        return { ...prev, quantity: newQuantity };
-      }
-      return prev;
-    });
   };
 
   // Função para renderizar o card e cada informação sobre o vinho
@@ -114,8 +82,8 @@ const CardList = () => {
         modalVisible={modalVisible}
         closeModal={closeModal}
         selectedWine={selectedWine}
-        plusWine={plusQuantity}
-        minusWine={minusQuantity}
+        setSelectedWine={setSelectedWine}
+        setWineList={setWineList}
       />
     </View>
   );
