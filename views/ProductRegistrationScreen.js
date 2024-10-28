@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View,Image, TouchableOpacity, Text} from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
+import * as ImagePicker from 'expo-image-picker';
 import Styling from '../assets/css/Styling';
 import CustomTextInput from "../components/CustomTextInput";
 import Formatter from '../util/Formatter';
@@ -21,12 +22,26 @@ const ProductRegistrationScreen = () => {
 
 // INSERÇÃO DE DADOS
   // Seleciona a imagem
-  const handleImagePicker = () => {
-    launchImageLibrary({ mediaType: 'photo' }, (response) => {
-      if (response.assets && response.assets.length > 0) {
-        setImagemProduto(response.assets[0].uri);
-      }
+  const handleImagePicker = async () => {
+    // Solicita permissão para acessar a galeria
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === true) {
+      alert("A permissão para acessar a galeria é necessária!");
+      return;
+    }
+
+    // Lança a galeria de imagens
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
     });
+
+    if (!result.canceled) {
+      setImagemProduto(result.assets[0].uri);
+    }
   };
 
   // Remove a imagem inserida
