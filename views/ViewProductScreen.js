@@ -6,6 +6,7 @@ import Styling from '../assets/css/Styling';
 import CustomTextInput from '../components/CustomTextInput';
 import Formatter from '../util/Formatter';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import db from '../util/db/db';
 
 // Tela de visualização, edição e remoção de produto
 const ViewProductScreen = () => {
@@ -65,8 +66,13 @@ const handleRemoverImagem = () => {
   // Manipula o valores de texto inserido
 const handleValorChange = (text) => {
     const valorFormatado = Formatter(text);
-    setValorProduto(valorFormatado);
+    setPreco(valorFormatado);
   };
+
+const updateProduct = () => {
+    db.updateProduct(nameWine, typeWine, priceWine, quantityWine, descriptWine);
+    navigation.navigate('Início');
+}
 
 
 return (
@@ -98,7 +104,7 @@ return (
         setDescricaoProduto={setDescricaoProduto} 
     />
 
-    <TouchableOpacity style={Styling.trashButton} onPress={() => navigation.navigate('Início')}>
+    <TouchableOpacity style={Styling.trashButton} onPress={updateProduct}>
         <Text style={Styling.buttonText}>Salvar</Text>
     </TouchableOpacity>
     </View>

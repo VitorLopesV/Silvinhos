@@ -107,12 +107,30 @@ export const updateProductQuantity = (name, newQuantity) => {
   });
 };
 
+export const updateProduct = (name, tipo, preco, quantidade, descricao) => {
+
+  db.transaction(tx => {
+    tx.executeSql(
+      'UPDATE vinhos SET tipo = ?, preço = ?, quantidade = ?, descrição = ? WHERE name = ?;',
+      [tipo, preco, quantidade, descricao, name],
+      async (_, result) => {
+        console.log("\nProduto atualizado com sucesso:", result);
+        console.log("Nome do vinho:", name, "Tipo:", tipo, "Valor:", preco, "Quantidade:", quantidade, "Descrição:", descricao);
+      },
+      (_, error) => {
+        console.error("Erro ao atualizar produto:", error);
+      }
+    );
+  });
+};
+
   
   export default {
     createProduct,
     getAllProducts,
     removeProduct,
     updateProductQuantity,
+    updateProduct,
     getProductsFromType,
     getProductsFromName,
   };
