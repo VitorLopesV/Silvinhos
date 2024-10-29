@@ -63,10 +63,10 @@ const CardList = () => {
   const renderCards = ({ item }) => (
     <Card 
       nameWine={item.name} 
-      typeWine={item.tipo}
-      priceWine={item.preço} 
-      quantityWine={item.quantidade} 
-      descriptWine={item.descrição}
+      typeWine={item.type}
+      priceWine={item.price} 
+      quantityWine={item.quantity} 
+      descriptWine={item.description}
       onSelect={openModal} 
     />
   );

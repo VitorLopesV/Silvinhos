@@ -66,11 +66,12 @@ const handleRemoverImagem = () => {
   // Manipula o valores de texto inserido
 const handleValorChange = (text) => {
     const valorFormatado = Formatter(text);
-    setPreco(valorFormatado);
+    setValorProduto(valorFormatado);
   };
 
 const updateProduct = () => {
-    db.updateProduct(nameWine, typeWine, priceWine, quantityWine, descriptWine);
+    db.removeProduct(nameWine);
+    db.createProduct(nomeProduto, tipoProduto, valorProduto, quantidadeProduto, descricaoProduto);
     navigation.navigate('Início');
 }
 

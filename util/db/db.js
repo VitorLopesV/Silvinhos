@@ -5,7 +5,7 @@ const db = SQLite.openDatabase("estoque.db")
 // Cria a tabela do  banco de dados.
 db.transaction((tx) => {
     tx.executeSql(
-      "CREATE TABLE IF NOT EXISTS vinhos (id INTEGER PRIMARY KEY NOT NULL, name TEXT NOT NULL, tipo TEXT NOT NULL, preço DOUBLE NOT NULL, quantidade INTEGER NOT NULL, descrição TEXT);"
+      "CREATE TABLE IF NOT EXISTS produtos (id INTEGER PRIMARY KEY NOT NULL, name TEXT NOT NULL, type TEXT NOT NULL, price DOUBLE NOT NULL, quantity INTEGER NOT NULL, description TEXT);"
     );
   });
   
@@ -13,7 +13,7 @@ db.transaction((tx) => {
   const getAllProducts = (callback) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "SELECT * FROM vinhos;",
+        "SELECT * FROM produtos;",
         [],
         (_, { rows }) => {
           const produto = rows._array;
@@ -27,10 +27,10 @@ db.transaction((tx) => {
   };
 
   // Retorna todos os produtos com o tipo informado do banco de dados.
-  const getProductsFromType = (tipo) => {
+  const getProductsFromType = (type) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "SELECT * FROM VINHOS WHERE tipo = ?", [tipo],
+        "SELECT * FROM produtos WHERE type = ?", [type],
         (_, { rows }) => {
           const teste = rows._array;
           teste.forEach((produto) => {
@@ -48,7 +48,7 @@ db.transaction((tx) => {
   const getProductsFromName = (name) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "SELECT * FROM VINHOS WHERE name = ?", [name],
+        "SELECT * FROM produtos WHERE name = ?", [name],
         (_, { rows }) => {
           const teste = rows._array;
           teste.forEach((produto) => {
@@ -63,15 +63,15 @@ db.transaction((tx) => {
   };
 
 // Adiciona um produto no banco de dados.
-export const createProduct = (name, tipo, preco, quantidade, descricao) => {
+export const createProduct = (name, type, price, quantity, description) => {
 
   db.transaction(tx => {
     tx.executeSql(
-      'INSERT INTO vinhos (name, tipo, preço, quantidade, descrição) VALUES (?, ?, ?, ?, ?);',
-      [name, tipo, preco, quantidade, descricao],
+      'INSERT INTO produtos (name, type, price, quantity, description) VALUES (?, ?, ?, ?, ?);',
+      [name, type, price, quantity, description],
       async (_, result) => {
         console.log("\nVinho adicionado com sucesso:", result);
-        console.log("Nome do vinho:", name, "Tipo:", tipo, "Valor:", preco, "Quantidade:", quantidade, "Descrição:", descricao)
+        console.log("Nome do vinho:", name, "Tipo:", type, "Valor:", price, "Quantidade:", quantity, "Descrição:", description)
       },
       (_, error) => {
         console.error("Erro ao adicionar produto:", error);
@@ -85,7 +85,7 @@ export const removeProduct = (name) => {
 
   db.transaction(tx => {
     tx.executeSql(
-      'DELETE FROM vinhos WHERE name = ?;',
+      'DELETE FROM produtos WHERE name = ?;',
       [name],
       (_, result) => {
         console.log("Produto removido com sucesso:", result);
@@ -97,25 +97,25 @@ export const removeProduct = (name) => {
   });
 };
 
-// Atualiza a quantidade de um vinho no banco de dados.
+// Atualiza a quantity de um vinho no banco de dados.
 export const updateProductQuantity = (name, newQuantity) => {
   db.transaction(tx => {
     tx.executeSql(
-      'UPDATE vinhos SET quantidade = ? WHERE name = ?;',
+      'UPDATE produtos SET quantity = ? WHERE name = ?;',
       [newQuantity, name]
     );
   });
 };
 
-export const updateProduct = (name, tipo, preco, quantidade, descricao) => {
+export const updateProduct = (name, type, price, quantity, description) => {
 
   db.transaction(tx => {
     tx.executeSql(
-      'UPDATE vinhos SET tipo = ?, preço = ?, quantidade = ?, descrição = ? WHERE name = ?;',
-      [tipo, preco, quantidade, descricao, name],
+      'UPDATE produtos SET type = ?, price = ?, quantity = ?, descrição = ? WHERE name = ?;',
+      [type, price, quantity, description, name],
       async (_, result) => {
         console.log("\nProduto atualizado com sucesso:", result);
-        console.log("Nome do vinho:", name, "Tipo:", tipo, "Valor:", preco, "Quantidade:", quantidade, "Descrição:", descricao);
+        console.log("Nome do vinho:", name, "Tipo:", type, "Valor:", price, "quantity:", quantity, "Descrição:", description);
       },
       (_, error) => {
         console.error("Erro ao atualizar produto:", error);
