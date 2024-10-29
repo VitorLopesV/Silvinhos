@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { launchImageLibrary } from 'react-native-image-picker';
 import * as ImagePicker from 'expo-image-picker';
 import Styling from '../assets/css/Styling';
 import CustomTextInput from '../components/CustomTextInput';
@@ -70,17 +69,21 @@ const handleValorChange = (text) => {
   };
 
    // Não permite quantidades com vírgula
-   const handleQuantityChange = (text) => {
+const handleQuantityChange = (text) => {
     const removeCaracter = text.replace(/,/g, ''); // Remove vírgulas
     setQuantidadeProduto(removeCaracter);
   };
 
 const updateProduct = () => {
+  if (!nomeProduto || !tipoProduto || !valorProduto || !quantidadeProduto) {
+    alert("É necessário preencher o nome, tipo, valor e quantidade antes de alterar as informações do produto.");
+    return;
+  } else {
     db.removeProduct(nameWine);
     db.createProduct(nomeProduto, tipoProduto, valorProduto, quantidadeProduto, descricaoProduto);
     navigation.navigate('Início');
+  }
 }
-
 
 return (
     <View style={Styling.productContainer}>

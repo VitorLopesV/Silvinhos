@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View,Image, TouchableOpacity, Text} from 'react-native';
-import { launchImageLibrary } from 'react-native-image-picker';
 import * as ImagePicker from 'expo-image-picker';
 import Styling from '../assets/css/Styling';
 import CustomTextInput from "../components/CustomTextInput";
@@ -63,8 +62,13 @@ const ProductRegistrationScreen = () => {
   };
   
   const addProduct = () => {
-    db.createProduct(name, tipo, preco, quantidade, descricao);
-    navigation.navigate('Início');
+    if (!name || !tipo || !preco || !quantidade) {
+      alert("É necessário preencher o nome, tipo, valor e quantidade antes de cadastrar o produto.");
+      return;
+    } else {
+      db.createProduct(name, tipo, preco, quantidade, descricao);
+      navigation.navigate('Início');
+    }
   }
     
   return (
