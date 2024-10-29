@@ -25,7 +25,7 @@ const ProductRegistrationScreen = () => {
     // Solicita permissão para acessar a galeria
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    if (permissionResult.granted === true) {
+    if (permissionResult.granted === false) {
       alert("A permissão para acessar a galeria é necessária!");
       return;
     }
@@ -66,7 +66,7 @@ const ProductRegistrationScreen = () => {
       alert("É necessário preencher o nome, tipo, valor e quantidade antes de cadastrar o produto.");
       return;
     } else {
-      db.createProduct(name, tipo, preco, quantidade, descricao);
+      db.createProduct(imagemProduto, name, tipo, preco, quantidade, descricao);
       navigation.navigate('Início');
     }
   }

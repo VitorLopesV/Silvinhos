@@ -13,7 +13,7 @@ const ViewProductScreen = () => {
   const route = useRoute(); // Usado para obter os dados da tela dos cards
 
   // Pega os dados dos vinhos existentes nos cards
-  const { nameWine, typeWine, priceWine, quantityWine, descriptWine } = route.params;
+  const { imageWine,nameWine, typeWine, priceWine, quantityWine, descriptWine } = route.params;
 
   // ARMAZENA OS DADOS 
   const [nomeProduto, setNomeProduto] = useState('');
@@ -25,6 +25,7 @@ const ViewProductScreen = () => {
 
   // Preenche os campos de texto assim que a tela é carregada com os dados do vinho
   useEffect(() => {
+    setImagemProduto(imageWine)
     setNomeProduto(nameWine);
     setTipoProduto(typeWine);
     setValorProduto(priceWine);
@@ -39,7 +40,7 @@ const handleImagePicker = async () => {
     // Solicita permissão para acessar a galeria
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    if (permissionResult.granted === true) {
+    if (permissionResult.granted === false) {
       alert("A permissão para acessar a galeria é necessária!");
       return;
     }
@@ -80,7 +81,7 @@ const updateProduct = () => {
     return;
   } else {
     db.removeProduct(nameWine);
-    db.createProduct(nomeProduto, tipoProduto, valorProduto, quantidadeProduto, descricaoProduto);
+    db.createProduct(imagemProduto, nomeProduto, tipoProduto, valorProduto, quantidadeProduto, descricaoProduto);
     navigation.navigate('Início');
   }
 }

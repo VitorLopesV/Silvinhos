@@ -1,11 +1,11 @@
 import * as SQLite from 'expo-sqlite'
 
-const db = SQLite.openDatabase("estoque.db")
+const db = SQLite.openDatabase("silvinhos.db")
 
 // Cria a tabela do  banco de dados.
 db.transaction((tx) => {
     tx.executeSql(
-      "CREATE TABLE IF NOT EXISTS produtos (id INTEGER PRIMARY KEY NOT NULL, name TEXT NOT NULL, type TEXT NOT NULL, price DOUBLE NOT NULL, quantity INTEGER NOT NULL, description TEXT);"
+      "CREATE TABLE IF NOT EXISTS produtos (id INTEGER PRIMARY KEY NOT NULL, image TEXT, name TEXT NOT NULL, type TEXT NOT NULL, price DOUBLE NOT NULL, quantity INTEGER NOT NULL, description TEXT);"
     );
   });
   
@@ -63,12 +63,11 @@ db.transaction((tx) => {
   };
 
 // Adiciona um produto no banco de dados.
-export const createProduct = (name, type, price, quantity, description) => {
-
+export const createProduct = (image, name, type, price, quantity, description) => {
   db.transaction(tx => {
     tx.executeSql(
-      'INSERT INTO produtos (name, type, price, quantity, description) VALUES (?, ?, ?, ?, ?);',
-      [name, type, price, quantity, description],
+      'INSERT INTO produtos (image, name, type, price, quantity, description) VALUES (?, ?, ?, ?, ?, ?);',
+      [image, name, type, price, quantity, description],
       async (_, result) => {
         console.log("\nVinho adicionado com sucesso:", result);
         console.log("Nome do vinho:", name, "Tipo:", type, "Valor:", price, "Quantidade:", quantity, "Descrição:", description)
@@ -107,6 +106,7 @@ export const updateProductQuantity = (name, newQuantity) => {
   });
 };
 
+
 export const updateProduct = (name, type, price, quantity, description) => {
 
   db.transaction(tx => {
@@ -123,14 +123,12 @@ export const updateProduct = (name, type, price, quantity, description) => {
     );
   });
 };
-
   
   export default {
     createProduct,
     getAllProducts,
     removeProduct,
     updateProductQuantity,
-    updateProduct,
     getProductsFromType,
     getProductsFromName,
   };

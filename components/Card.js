@@ -5,13 +5,13 @@ import WineModal from './ModalCards';
 import Styling from '../assets/css/Styling';
 import db from '../util/db/db';
 
-const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptWine, onSelect }) => {
+const Card = ({ imageWine, nameWine, typeWine, priceWine, quantityWine, descriptWine, onSelect }) => {
   const navigation = useNavigation();
 // Estrutura dos cards
   return (
     <TouchableOpacity style={Styling.cardOfWineContainer} onPress={() => navigation.navigate('Visualizar Produto', {
-      nameWine, typeWine, priceWine, quantityWine, descriptWine })}>
-      <Image style={Styling.imageWine} source={require('../assets/img/imagem padrão produto.png')} />
+      imageWine, nameWine, typeWine, priceWine, quantityWine, descriptWine })}>
+      <Image style={Styling.imageWine} source={imageWine ? { uri: imageWine } : require('../assets/img/imagem padrão produto.png')}/>
       <View style={Styling.infoOfWineContainer}>
         <Text style={Styling.nameWine}>{nameWine}</Text>
         <Text style={Styling.detailsOfWine}>Valor: {priceWine}</Text>
@@ -62,6 +62,7 @@ const CardList = () => {
   // Função para renderizar o card e cada informação sobre o vinho
   const renderCards = ({ item }) => (
     <Card 
+      imageWine={item.image}
       nameWine={item.name} 
       typeWine={item.type}
       priceWine={item.price} 
