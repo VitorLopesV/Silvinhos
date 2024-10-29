@@ -69,6 +69,12 @@ const handleValorChange = (text) => {
     setValorProduto(valorFormatado);
   };
 
+   // Não permite quantidades com vírgula
+   const handleQuantityChange = (text) => {
+    const removeCaracter = text.replace(/,/g, ''); // Remove vírgulas
+    setQuantidadeProduto(removeCaracter);
+  };
+
 const updateProduct = () => {
     db.removeProduct(nameWine);
     db.createProduct(nomeProduto, tipoProduto, valorProduto, quantidadeProduto, descricaoProduto);
@@ -82,7 +88,7 @@ return (
         {imagemProduto ? (
         <Image source={{ uri: imagemProduto }} style={Styling.productImage} />
         ) : (
-        <Image source={require('../assets/img/vinho.jpg')} style={Styling.productImage} />
+        <Image source={require('../assets/img/imagem padrão produto.png')} style={Styling.productImage} />
         )}
     </TouchableOpacity>
 
@@ -100,7 +106,7 @@ return (
         valorProduto={valorProduto} 
         handleValorChange={handleValorChange} 
         quantidadeProduto={quantidadeProduto} 
-        setQuantidadeProduto={setQuantidadeProduto}  
+        handleQuantityChange={handleQuantityChange} 
         descricaoProduto={descricaoProduto} 
         setDescricaoProduto={setDescricaoProduto} 
     />

@@ -11,7 +11,7 @@ const Card = ({ nameWine, typeWine, priceWine, quantityWine, descriptWine, onSel
   return (
     <TouchableOpacity style={Styling.cardOfWineContainer} onPress={() => navigation.navigate('Visualizar Produto', {
       nameWine, typeWine, priceWine, quantityWine, descriptWine })}>
-      <Image style={Styling.imageWine} source={require('../assets/img/vinho.jpg')} />
+      <Image style={Styling.imageWine} source={require('../assets/img/imagem padrão produto.png')} />
       <View style={Styling.infoOfWineContainer}>
         <Text style={Styling.nameWine}>{nameWine}</Text>
         <Text style={Styling.detailsOfWine}>Valor: {priceWine}</Text>

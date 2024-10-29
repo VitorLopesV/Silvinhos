@@ -10,7 +10,7 @@ const WineModal = ({ modalVisible, closeModal, selectedWine, setWineList, setSel
     db.updateProductQuantity(name, newQuantity);
     setWineList(prevWineList => {
       return prevWineList.map(wine => 
-        wine.name === name ? { ...wine, quantidade: newQuantity } : wine
+        wine.name === name ? { ...wine, quantity: newQuantity } : wine
       );
     });
   };

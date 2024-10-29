@@ -1,22 +1,21 @@
 const Formatter = (text) => {
-    // Remove caracteres que não são números ou vírgulas
-    const valor = text.replace(/[^0-9,]/g, '');
+  // Remove tudo que não for número, utilizando regex
+  let valor = text.replace(/[^0-9]/g, '');
 
-    // Se o texto estiver vazio, retorna vazio
-    if (valor.length === 0) return '';
+  // Se o valor for menor que 3 dígitos, apenas retorna o número como está
+  if (valor.length <= 2) {
+    return `R$ ${valor}`;
+  }
 
-    // Separa a parte inteira da decimal
-    let [inteiro, decimal] = valor.split(',');
+  // Separa a parte inteira e as casas decimais
+  const inteiro = valor.slice(0, -2); // Tudo menos os dois últimos caracteres
+  const decimal = valor.slice(-2);    // Os dois últimos caracteres
 
-    // Adiciona formatação com R$ e casas decimais
-    inteiro = parseInt(inteiro, 10).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Formata a parte inteira
-    if (decimal) {
-      decimal = decimal.length > 2 ? decimal.slice(0, 2) : decimal; // Limita a duas casas decimais
-    } else {
-      decimal = '';
-    }
+  // Formata a parte inteira com pontos para separar os milhares
+  const inteiroFormatado = inteiro.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
-    return `R$ ${inteiro}${decimal ? ',' + decimal : ''}`;
-  };
+  // Retorna o valor formatado com "R$"
+  return `R$ ${inteiroFormatado},${decimal}`;
+};
 
   export default Formatter;
