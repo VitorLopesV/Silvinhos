@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
 import Styling from '../assets/css/Styling';
-import RemoveProductModal from '../components/ModalRemove'; // Importando o Modal
+import RemoveProductModal from './ModalRemove'; // Importando o Modal
+import db from '../util/db/db';
+import {useRoute } from '@react-navigation/native';
 
-const EditProduct = ({ navigation }) => {
+const RemoveProduct = ({ navigation }) => {
+  const route = useRoute();
+
+  const {nameWine} = route.params;
+
   // Estado para controlar a visibilidade do modal
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -20,6 +26,7 @@ const EditProduct = ({ navigation }) => {
   // Função para remover o produto e fechar o modal
   const removeProduct = () => {
     setModalVisible(false);
+    db.removeProduct(nameWine);
     navigation.navigate('Início');
   };
 
@@ -40,5 +47,5 @@ const EditProduct = ({ navigation }) => {
   );
 };
 
-export default EditProduct;
+export default RemoveProduct;
 

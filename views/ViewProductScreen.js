@@ -22,7 +22,6 @@ const ViewProductScreen = () => {
   const [quantidadeProduto, setQuantidadeProduto] = useState('');
   const [descricaoProduto, setDescricaoProduto] = useState('');
   const [imagemProduto, setImagemProduto] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
 
   // Preenche os campos de texto assim que a tela é carregada com os dados do vinho
   useEffect(() => {
@@ -33,6 +32,7 @@ const ViewProductScreen = () => {
     setDescricaoProduto(descriptWine);
   }, [nameWine, typeWine, priceWine, quantityWine, descriptWine]);
 
+  
 // INSERÇÃO DE DADOS
   // Seleciona a imagem
 const handleImagePicker = async () => {

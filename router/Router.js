@@ -5,7 +5,7 @@ import ProductRegistrationScreen from '../views/ProductRegistrationScreen';
 import ViewProductScreen from '../views/ViewProductScreen';
 import HeaderLeftMenu from '../components/HeaderLeftMenu';
 import Filter from '../components/Filter';
-import EditProduct from '../components/EditProduct';
+import RemoveProduct from '../components/RemoveProduct';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -49,7 +49,7 @@ const Stack = createStackNavigator();
           component={ViewProductScreen} 
           options={({ navigation }) => ({
             title: 'Visualizar Produto',
-            headerRight: () => <EditProduct navigation={navigation} />,
+            headerRight: () => <RemoveProduct navigation={navigation} />,
           })}
         />
       </Stack.Navigator>
