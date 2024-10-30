@@ -10,17 +10,38 @@ db.transaction((tx) => {
   });
   
   // Retorna todos os produtos do banco de dados.
-  const getAllProducts = (callback) => {
+  const getAllProducts = (name = null, type = null, callback) => {
+    let query = "SELECT * FROM produtos"; // Query inicial
+    let params = [];
+  
+    // Adiciona logs para verificar os valores recebidos
+    //console.log("Parâmetro nome:", name);
+    //console.log("Parâmetro tipo:", type);
+  
+    // Ajusta a query com base nos parâmetros fornecidos
+    if (name) {
+      query += " WHERE name = ?"; // Filtra por nome
+      params.push(name);
+    } else if (type) {
+      query += " WHERE type = ?"; // Filtra por tipo
+      params.push(type);
+    }
+  
+    // Log da query final para verificar se está correta
+    
+  
+    // Executa a query
     db.transaction((tx) => {
       tx.executeSql(
-        "SELECT * FROM produtos;",
-        [],
+        query,
+        params, // Parâmetros de busca
         (_, { rows }) => {
-          const produto = rows._array;
-          callback(produto); 
+          const produtos = rows._array; // Recebe os resultados
+           // Adiciona log para ver os produtos encontrados
+          callback(produtos); // Chama o callback com a lista de produtos
         },
         (_, error) => {
-          console.error("Erro ao buscar produtos:", error); 
+          console.error("Erro ao buscar produtos:", error); // Trata o erro
         }
       );
     });

@@ -3,7 +3,7 @@ import { View, FlatList, TouchableOpacity, Text, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import WineModal from './ModalCards';
 import Styling from '../assets/css/Styling';
-import db from '../util/db/db';
+import useLoadWines from '../util/UseLoadWines';
 
 const Card = ({ imageWine, nameWine, typeWine, priceWine, quantityWine, descriptWine, onSelect }) => {
   const navigation = useNavigation();
@@ -26,40 +26,28 @@ const Card = ({ imageWine, nameWine, typeWine, priceWine, quantityWine, descript
 
 const CardList = () => {
   const navigation = useNavigation();
+  const { wineList, loadWines } = useLoadWines(); // Usa o hook para carregar os vinhos
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedWine, setSelectedWine] = useState({ name: '', quantity: 0 });
-  const [wineList, setWineList] = useState([]); // Lista dos vinhos
 
-  // Função para carregar vinhos do banco de dados
-  const loadWines = () => {
-    db.getAllProducts((produtos) => {
-      setWineList(produtos); 
-    });
-  };
-
-  // Chame loadWines no useEffect para carregar os vinhos ao montar o componente
+  // Chama a função de carregar os vinhos quando a tela ganha foco
   useEffect(() => {
-    loadWines();
-    // Carrega os vinhos sempre que a tela estiver sendo visualizada
     const unsubscribe = navigation.addListener('focus', () => {
-      loadWines();
+      loadWines(); // Recarrega os vinhos ao focar na tela
     });
     return unsubscribe;
   }, [navigation]);
 
-  // Abre o modal (pop-up) dos cards
   const openModal = (nameWine, quantityWine) => {
     setSelectedWine({ name: nameWine, quantity: quantityWine });
     setModalVisible(true);
   };
 
-  // Fecha o modal (pop-up) dos cards
   const closeModal = () => {
     setModalVisible(false);
     navigation.navigate('Início');
   };
 
-  // Função para renderizar o card e cada informação sobre o vinho
   const renderCards = ({ item }) => (
     <Card 
       imageWine={item.image}
@@ -75,7 +63,7 @@ const CardList = () => {
   return (
     <View>
       <FlatList
-        data={wineList}
+        data={wineList} // Lista de vinhos carregada
         renderItem={renderCards}
         keyExtractor={item => item.id.toString()}
       />
@@ -84,7 +72,6 @@ const CardList = () => {
         closeModal={closeModal}
         selectedWine={selectedWine}
         setSelectedWine={setSelectedWine}
-        setWineList={setWineList}
       />
     </View>
   );

@@ -1,15 +1,17 @@
-import { View, Text, TouchableOpacity} from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Styling from '../assets/css/Styling';
 import SearchBar from '../components/SearchBar';
-import db from '../util/db/db';
+import useLoadWines from '../util/UseLoadWines';
 
-
-const filterByType = (type) => {
-    db.getProductsFromType(type);
-}
-
-// Filtros da aba de filtro na tela principal.
 const Filter = () => {
+    // Usa o hook useLoadWines dentro do componente
+    const { wineList, loadWines } = useLoadWines(); 
+
+    // Função de filtro que chama loadWines com o tipo de vinho selecionado
+    const filterByType = (type) => {
+        loadWines(null, type); // Chama a função para carregar os vinhos filtrados pelo tipo
+    };
+
     return (
         <View style={Styling.drawerContainer}>
             <SearchBar/>
@@ -37,6 +39,6 @@ const Filter = () => {
             </TouchableOpacity>
         </View>
     );
-  };
+};
 
 export default Filter;
