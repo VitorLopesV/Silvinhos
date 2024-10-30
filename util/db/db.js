@@ -17,10 +17,10 @@ db.transaction((tx) => {
         [],
         (_, { rows }) => {
           const produto = rows._array;
-          callback(produto); // Chame o callback com a lista de produtos
+          callback(produto); 
         },
         (_, error) => {
-          console.error("Erro ao buscar produtos:", error); // Imprime o erro no terminal
+          console.error("Erro ao buscar produtos:", error); 
         }
       );
     });
@@ -106,24 +106,6 @@ export const updateProductQuantity = (name, newQuantity) => {
   });
 };
 
-
-export const updateProduct = (name, type, price, quantity, description) => {
-
-  db.transaction(tx => {
-    tx.executeSql(
-      'UPDATE produtos SET type = ?, price = ?, quantity = ?, descrição = ? WHERE name = ?;',
-      [type, price, quantity, description, name],
-      async (_, result) => {
-        console.log("\nProduto atualizado com sucesso:", result);
-        console.log("Nome do vinho:", name, "Tipo:", type, "Valor:", price, "quantity:", quantity, "Descrição:", description);
-      },
-      (_, error) => {
-        console.error("Erro ao atualizar produto:", error);
-      }
-    );
-  });
-};
-  
   export default {
     createProduct,
     getAllProducts,

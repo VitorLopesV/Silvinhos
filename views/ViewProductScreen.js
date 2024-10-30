@@ -75,6 +75,7 @@ const handleQuantityChange = (text) => {
     setQuantidadeProduto(removeCaracter);
   };
 
+  // Atualiza produto
 const updateProduct = () => {
   if (!nomeProduto || !tipoProduto || !valorProduto || !quantidadeProduto) {
     alert("É necessário preencher o nome, tipo, valor e quantidade antes de alterar as informações do produto.");
