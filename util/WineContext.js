@@ -15,7 +15,7 @@ export const WineProvider = ({ children }) => {
   }, []);
 
   return (
-    <WineContext.Provider value={{ wineList, loadWines }}>
+    <WineContext.Provider value={{ wineList, loadWines, setWineList }}>
       {children}
     </WineContext.Provider>
   );

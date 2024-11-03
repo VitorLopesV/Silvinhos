@@ -27,7 +27,7 @@ const Card = ({ imageWine, nameWine, typeWine, priceWine, quantityWine, descript
 
 const CardList = () => {
   const navigation = useNavigation();
-  const { wineList, loadWines } = useWineContext(); // Obtém a lista de vinhos do contexto
+  const { wineList, loadWines, setWineList } = useWineContext(); // Obtém a lista de vinhos do contexto
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedWine, setSelectedWine] = useState({ name: '', quantity: 0 });
 
@@ -75,7 +75,8 @@ const CardList = () => {
         closeModal={closeModal}
         selectedWine={selectedWine}
         setSelectedWine={setSelectedWine}
-        setWineList={loadWines}
+        setWineList={setWineList}
+        loadWines={loadWines}
       />
     </View>
   );
