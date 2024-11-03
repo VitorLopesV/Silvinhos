@@ -2,6 +2,11 @@ import {StyleSheet} from 'react-native';
 
 const Styling = StyleSheet.create({
     container: {
+      padding: 10,
+      width: '100%',
+      alignItems: 'center',
+    },
+    containerFilter: {
       paddingTop: 40,
       paddingBottom:20,
       width: '100%',

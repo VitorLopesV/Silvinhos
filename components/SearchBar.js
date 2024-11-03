@@ -14,7 +14,7 @@ const SearchBar = () => {
         loadWines(name, null);
     }
   return (
-    <View style={Styling.container}>
+    <View style={Styling.containerFilter}>
       <TextInput
         style={Styling.searchBar}
         placeholder="Pesquisar..."
