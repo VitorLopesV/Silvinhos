@@ -2,9 +2,13 @@ import {StyleSheet} from 'react-native';
 
 const Styling = StyleSheet.create({
     container: {
-      padding: 10,
+      paddingTop: 40,
+      paddingBottom:20,
       width: '100%',
       alignItems: 'center',
+      flexDirection:'row',
+      justifyContent: 'space-between',
+  
     },
     text: {
       fontSize: 24,
@@ -63,17 +67,37 @@ const Styling = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: '#661923', 
     },
+    leftBarButtonClear: {
+      width: 250,
+      height: 38,
+      borderRadius: 10,
+      marginBottom: 5, 
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#646464', 
+    },
     leftBarButtonText: {
       color: 'white',
       fontSize: 20,
     },
     searchBar: {
       height: 45,
-      width: '100%',
+      width: '75%',
       borderColor: '#646464',
       borderWidth: 1,
       padding: 16,
       borderRadius: 5,
+    },
+    searchButton:{
+      height: 45,
+      width: '23%',
+      alignItems: 'center',
+      justifyContent:'center',
+      backgroundColor: '#661923',
+      borderRadius: 5,
+    },
+    textSeachButton:{
+      color: '#FFFFFF'
     },
     image: {
       width: 45,

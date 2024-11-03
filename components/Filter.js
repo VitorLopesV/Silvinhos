@@ -1,19 +1,20 @@
-import { View, Text, TouchableOpacity} from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { useWineContext } from '../util/WineContext';
 import Styling from '../assets/css/Styling';
 import SearchBar from '../components/SearchBar';
-import db from '../util/db/db';
 
-
-const filterByType = (type) => {
-    db.getProductsFromType(type);
-}
-
-// Filtros da aba de filtro na tela principal.
 const Filter = () => {
+    const { loadWines } = useWineContext();
+
+    const filterByType = (type) => {
+        loadWines(null, type);
+    }
+
     return (
         <View style={Styling.drawerContainer}>
-            <SearchBar/>
-            <Text style={Styling.textTitle}>Tipos de vinhos:</Text>
+            <SearchBar />
+            <Text style={Styling.textTitle}>Filtrar pelo tipo:</Text>
             <TouchableOpacity style={Styling.leftBarButton} onPress={() => filterByType('espumante')}>
                 <Text style={Styling.leftBarButtonText}>Espumante</Text>
             </TouchableOpacity>
@@ -35,8 +36,11 @@ const Filter = () => {
             <TouchableOpacity style={Styling.leftBarButton} onPress={() => filterByType('vinho verde')}>
                 <Text style={Styling.leftBarButtonText}>Verde</Text>
             </TouchableOpacity>
+            <TouchableOpacity style={Styling.leftBarButtonClear} onPress={() => filterByType('')}>
+                <Text style={Styling.leftBarButtonText}>Nenhum Filtro</Text>
+            </TouchableOpacity>
         </View>
     );
-  };
+};
 
 export default Filter;

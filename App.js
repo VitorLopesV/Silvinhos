@@ -2,13 +2,17 @@
 import { NavigationContainer } from '@react-navigation/native';
 import Router from './router/Router';
 import React from 'react';
+import { WineProvider } from './util/WineContext';
 
 // Componente principal App
 function App() {
   return (
-    <NavigationContainer>
-      <Router/>
-    </NavigationContainer>
+    <WineProvider>
+      <NavigationContainer>
+        <Router/>
+      </NavigationContainer>
+    </WineProvider>
+  
   );
 }
 
