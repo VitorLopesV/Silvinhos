@@ -10,7 +10,7 @@ const HomeScreen = ({ navigation }) => {
         <TouchableOpacity style={Styling.productButton} onPress={() => navigation.navigate('Cadastrar Produto')}>
           <Text style={Styling.productButtonText}>+ Cadastrar Produto</Text>
         </TouchableOpacity>
-        <CardList/>
+        <CardList testID="card-list"/>
       </View>
     );
   };

@@ -48,7 +48,7 @@ const WineModal = ({ modalVisible, closeModal, selectedWine, setWineList, setSel
           <Text style={Styling.modalTitle}>{selectedWine.name}</Text>
           <Text style={Styling.modalText}>Quantidade: {selectedWine.quantity}</Text> 
           <View style={Styling.modalButtonContainer}>
-            <TouchableOpacity style={Styling.modalButton} onPress={minusQuantity}>
+            <TouchableOpacity style={Styling.modalButton} onPress={minusQuantity} testID="minus-button">
               <Image style={Styling.plusMinusImage} source={require('../assets/img/minus.png')}/>
             </TouchableOpacity>
             <TouchableOpacity style={Styling.modalButton} onPress={closeModal}>

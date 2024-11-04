@@ -25,7 +25,7 @@ const Card = ({ imageWine, nameWine, typeWine, priceWine, quantityWine, descript
   );
 };
 
-const CardList = () => {
+const CardList = ({ testID }) => {
   const navigation = useNavigation();
   const { wineList, loadWines, setWineList } = useWineContext(); // Obtém a lista de vinhos do contexto
   const [modalVisible, setModalVisible] = useState(false);
@@ -64,7 +64,7 @@ const CardList = () => {
   );
 
   return (
-    <View>
+    <View testID={testID}>
       <FlatList
         data={wineList}
         renderItem={renderCards}
