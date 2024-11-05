@@ -37,7 +37,7 @@ const Filter = () => {
                 <Text style={Styling.leftBarButtonText}>Verde</Text>
             </TouchableOpacity>
             <TouchableOpacity style={Styling.leftBarButtonClear} onPress={() => filterByType('')}>
-                <Text style={Styling.leftBarButtonText}>Nenhum Filtro</Text>
+                <Text style={Styling.leftBarButtonText}>Limpar Filtro</Text>
             </TouchableOpacity>
         </View>
     );

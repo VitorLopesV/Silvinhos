@@ -25,7 +25,7 @@ const ProductRegistrationScreen = () => {
     // Solicita permissão para acessar a galeria
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    if (permissionResult.granted === false) {
+    if (permissionResult.granted === true) {
       alert("A permissão para acessar a galeria é necessária!");
       return;
     }
