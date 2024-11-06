@@ -5,6 +5,7 @@ import RemoveProductModal from './ModalRemove'; // Importando o Modal
 import db from '../util/db/db';
 import {useRoute } from '@react-navigation/native';
 
+// Icone de remoção do produto
 const RemoveProduct = ({ navigation }) => {
   const route = useRoute();
 
@@ -32,12 +33,10 @@ const RemoveProduct = ({ navigation }) => {
 
   return (
     <View style={Styling.container}>
-      {/* Ícone de remoção do produto (abre o modal) */}
       <TouchableOpacity onPress={openModal}>
         <Image source={require('../assets/img/removeProduct.png')} style={Styling.image} />
       </TouchableOpacity>
 
-      {/* Modal de remoção do produto */}
       <RemoveProductModal 
         visible={modalVisible} 
         doesNotRemove={doesNotRemoveProduct} 

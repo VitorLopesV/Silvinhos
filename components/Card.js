@@ -4,11 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import WineModal from './ModalCards';
 import { useWineContext } from '../util/WineContext';
 import Styling from '../assets/css/Styling';
-import WineService from '../util/WineService';
 
+// Estrutura dos cards
 const Card = ({ imageWine, nameWine, typeWine, priceWine, quantityWine, descriptWine, onSelect }) => {
   const navigation = useNavigation();
-// Estrutura dos cards
+ 
   return (
     <TouchableOpacity style={Styling.cardOfWineContainer} onPress={() => navigation.navigate('Visualizar Produto', {
       imageWine, nameWine, typeWine, priceWine, quantityWine, descriptWine })}>
@@ -27,13 +27,13 @@ const Card = ({ imageWine, nameWine, typeWine, priceWine, quantityWine, descript
 
 const CardList = ({ testID }) => {
   const navigation = useNavigation();
-  const { wineList, loadWines, setWineList } = useWineContext(); // Obtém a lista de vinhos do contexto
+  const { wineList, loadWines, setWineList } = useWineContext(); 
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedWine, setSelectedWine] = useState({ name: '', quantity: 0 });
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      loadWines(); // Atualiza os vinhos ao visualizar a tela
+      loadWines(); 
     });
     return unsubscribe;
   }, [navigation]);

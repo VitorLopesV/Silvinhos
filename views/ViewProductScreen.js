@@ -10,7 +10,7 @@ import db from '../util/db/db';
 // Tela de visualização, edição e remoção de produto
 const ViewProductScreen = () => {
   const navigation = useNavigation();
-  const route = useRoute(); // Usado para obter os dados da tela dos cards
+  const route = useRoute(); 
 
   // Pega os dados dos vinhos existentes nos cards
   const { imageWine,nameWine, typeWine, priceWine, quantityWine, descriptWine } = route.params;
@@ -29,7 +29,7 @@ const ViewProductScreen = () => {
     setNomeProduto(nameWine);
     setTipoProduto(typeWine);
     setValorProduto(priceWine);
-    setQuantidadeProduto(quantityWine ? quantityWine.toString() : ''); // Certifique-se de que é uma string
+    setQuantidadeProduto(quantityWine ? quantityWine.toString() : ''); 
     setDescricaoProduto(descriptWine);
   }, [nameWine, typeWine, priceWine, quantityWine, descriptWine]);
 
@@ -37,6 +37,7 @@ const ViewProductScreen = () => {
 // INSERÇÃO DE DADOS
   // Seleciona a imagem
 const handleImagePicker = async () => {
+
     // Solicita permissão para acessar a galeria
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -71,7 +72,7 @@ const handleValorChange = (text) => {
 
    // Não permite quantidades com vírgula
 const handleQuantityChange = (text) => {
-    const removeCaracter = text.replace(/,/g, ''); // Remove vírgulas
+    const removeCaracter = text.replace(/,/g, ''); 
     setQuantidadeProduto(removeCaracter);
   };
 

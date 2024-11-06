@@ -4,9 +4,11 @@ import { useWineContext } from '../util/WineContext';
 import Styling from '../assets/css/Styling';
 import SearchBar from '../components/SearchBar';
 
+// Aba de filtro do sistema 
 const Filter = () => {
     const { loadWines } = useWineContext();
 
+    // Busca os produtos pelo tipo 
     const filterByType = (type) => {
         loadWines(null, type);
     }
@@ -21,7 +23,7 @@ const Filter = () => {
             <TouchableOpacity style={Styling.leftBarButton} onPress={() => filterByType('vinho branco')}>
                 <Text style={Styling.leftBarButtonText}>Branco</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={Styling.leftBarButton} onPress={() => filterByType('vinho doce')}>
+            <TouchableOpacity style={Styling.leftBarButton} onPress={() => filterByType('vinho suave')}>
                 <Text style={Styling.leftBarButtonText}>Doce</Text>
             </TouchableOpacity>
             <TouchableOpacity style={Styling.leftBarButton} onPress={() => filterByType('vinho rosé')}>

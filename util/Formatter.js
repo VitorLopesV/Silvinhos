@@ -1,4 +1,5 @@
-const Formatter = (text) => {
+// Formatador do valor do produto 
+const Formatter = (text) => { 
   // Remove tudo que não for número, utilizando regex
   let valor = text.replace(/[^0-9]/g, '');
 

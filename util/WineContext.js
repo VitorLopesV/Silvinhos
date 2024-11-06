@@ -3,15 +3,17 @@ import WineService from '../util/WineService';
 
 const WineContext = createContext();
 
+// Contexto providenciador de vinhos 
 export const WineProvider = ({ children }) => {
   const [wineList, setWineList] = useState([]);
 
+  // Carrega os vinhos do banco de dados 
   const loadWines = (name = null, type = null) => {
     WineService.loadWines(name, type, setWineList);
   };
 
   useEffect(() => {
-    loadWines(); // Carrega todos os vinhos ao iniciar
+    loadWines(); 
   }, []);
 
   return (

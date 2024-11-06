@@ -26,42 +26,6 @@ db.transaction((tx) => {
     });
   };
 
-  // Retorna todos os produtos com o tipo informado do banco de dados.
-  const getProductsFromType = (type) => {
-    db.transaction((tx) => {
-      tx.executeSql(
-        "SELECT * FROM produtos WHERE type = ?", [type],
-        (_, { rows }) => {
-          const teste = rows._array;
-          teste.forEach((produto) => {
-            console.log(produto);
-          });
-        },
-        (_, error) => {
-          console.error("Erro ao buscar produtos:", error);
-        }
-      );
-    });
-  };
-
-  // Retorna todos os produtos com o nome informado do banco de dados.
-  const getProductsFromName = (name) => {
-    db.transaction((tx) => {
-      tx.executeSql(
-        "SELECT * FROM produtos WHERE name = ?", [name],
-        (_, { rows }) => {
-          const teste = rows._array;
-          teste.forEach((produto) => {
-            console.log(produto);
-          });
-        },
-        (_, error) => {
-          console.error("Erro ao buscar produtos:", error);
-        }
-      );
-    });
-  };
-
 // Adiciona um produto no banco de dados.
 export const createProduct = (image, name, type, price, quantity, description) => {
   db.transaction(tx => {
@@ -111,6 +75,4 @@ export const updateProductQuantity = (name, newQuantity) => {
     getAllProducts,
     removeProduct,
     updateProductQuantity,
-    getProductsFromType,
-    getProductsFromName,
   };

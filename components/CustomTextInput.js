@@ -21,7 +21,7 @@ const CustomTextInput = (
   const [items, setItems] = useState([
     { label: 'Espumante', value: 'espumante' },
     { label: 'Vinho Branco', value: 'vinho branco' },
-    { label: 'Vinho Doce', value: 'vinho doce' },
+    { label: 'Vinho Suave', value: 'vinho suave' },
     { label: 'Vinho Rosé', value: 'vinho rosé' },
     { label: 'Vinho Seco', value: 'vinho seco' },
     { label: 'Vinho Tinto', value: 'vinho tinto' },

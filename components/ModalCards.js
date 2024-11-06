@@ -5,6 +5,7 @@ import db from '../util/db/db';
 
 // Modal que adiciona ou remove a quantidade de produtos do sistema.
 const WineModal = ({ modalVisible, closeModal, selectedWine, setWineList, setSelectedWine }) => {
+  
   // Função para atualizar a quantidade de um vinho na lista e no BD 
   const updateQuantity = (name, newQuantity) => {
     db.updateProductQuantity(name, newQuantity);

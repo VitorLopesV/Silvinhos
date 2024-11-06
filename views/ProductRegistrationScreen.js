@@ -22,6 +22,7 @@ const ProductRegistrationScreen = () => {
 // INSERÇÃO DE DADOS
   // Seleciona a imagem
   const handleImagePicker = async () => {
+
     // Solicita permissão para acessar a galeria
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -50,17 +51,18 @@ const ProductRegistrationScreen = () => {
 
   // Manipula o valores de texto inserido
     const handleValorChange = (text) => {
-    const valorFormatado = Formatter(text);  // Função de formatação
+    const valorFormatado = Formatter(text);  
     setPreco(valorFormatado);
 
   };
 
   // Não permite quantidades com vírgula
   const handleQuantityChange = (text) => {
-    const removeCaracter = text.replace(/,/g, ''); // Remove vírgulas
+    const removeCaracter = text.replace(/,/g, ''); 
     setQuantidade(removeCaracter);
   };
   
+  // Adiciona um produto. 
   const addProduct = () => {
     if (!name || !tipo || !preco || !quantidade) {
       alert("É necessário preencher o nome, tipo, valor e quantidade antes de cadastrar o produto.");

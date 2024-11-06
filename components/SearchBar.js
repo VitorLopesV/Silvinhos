@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text} from 'react-native';
 import Styling from '../assets/css/Styling';
-import db from '../util/db/db';
 import { useWineContext } from '../util/WineContext';
 
 
@@ -10,9 +9,11 @@ const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const { loadWines } = useWineContext();
 
-    const filterByType = (name) => {
-        loadWines(name, null);
-    }
+  // Busca os produtos pelo nome. 
+  const filterByName = (name) => {
+      loadWines(name, null);
+  }
+
   return (
     <View style={Styling.containerFilter}>
       <TextInput
@@ -22,7 +23,7 @@ const SearchBar = () => {
         onChangeText={setSearchQuery}
       />
 
-    <TouchableOpacity style={Styling.searchButton} onPress={()=> filterByType(searchQuery)}>
+    <TouchableOpacity style={Styling.searchButton} onPress={()=> filterByName(searchQuery)}>
       <Text style={Styling.textSeachButton}>Buscar</Text>
     </TouchableOpacity>
     </View>
