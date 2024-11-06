@@ -24,7 +24,7 @@ const Filter = () => {
                 <Text style={Styling.leftBarButtonText}>Branco</Text>
             </TouchableOpacity>
             <TouchableOpacity style={Styling.leftBarButton} onPress={() => filterByType('vinho suave')}>
-                <Text style={Styling.leftBarButtonText}>Doce</Text>
+                <Text style={Styling.leftBarButtonText}>Suave</Text>
             </TouchableOpacity>
             <TouchableOpacity style={Styling.leftBarButton} onPress={() => filterByType('vinho rosé')}>
                 <Text style={Styling.leftBarButtonText}>Rosé</Text>
